@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chuheji.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="html123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293&lt;!doctype html&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于jQuery的3D滚动词云图">
+<meta property="og:url" content="http://chuheji.github.io/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/index.html">
+<meta property="og:site_name" content="楚河纪">
+<meta property="og:description" content="html123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293&lt;!doctype html&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-24T03:33:43.000Z">
+<meta property="article:modified_time" content="2020-08-24T03:39:44.492Z">
+<meta property="article:author" content="Liu YouXiang">
+<meta property="article:tag" content="可视化">
+<meta property="article:tag" content="jQuery">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://chuheji.github.io/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于jQuery的3D滚动词云图 | 楚河纪</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">楚河纪</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">强啊霸哥</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#html"><span class="nav-number">1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css"><span class="nav-number">2.</span> <span class="nav-text">css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js"><span class="nav-number">3.</span> <span class="nav-text">js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text">参数说明</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liu YouXiang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Liu YouXiang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu YouXiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="楚河纪">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于jQuery的3D滚动词云图
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-24 11:33:43 / 修改时间：11:39:44" itemprop="dateCreated datePublished" datetime="2020-08-24T11:33:43+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index"><span itemprop="name">jQuery</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/" class="post-meta-item leancloud_visitors" data-flag-title="基于jQuery的3D滚动词云图" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;zh&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge,chrome&#x3D;1&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;3D动画标签云&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;.&#x2F;index.css&quot;&gt;</span><br><span class="line">  &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">    #tag-cloud &#123;</span><br><span class="line">      width: 120px;</span><br><span class="line">      height: 150px;</span><br><span class="line">      overflow: hidden;</span><br><span class="line">      &#x2F;* margin: 50px auto; *&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #tag-cloud svg &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      top: -3px;</span><br><span class="line">      left: 50%;</span><br><span class="line">      transform: translateX(-50%);</span><br><span class="line">      overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;zzsc-container&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&#39;tag-cloud&#39;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script src&#x3D;&#39;http:&#x2F;&#x2F;libs.baidu.com&#x2F;jquery&#x2F;2.1.1&#x2F;jquery.min.js&#39;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;.&#x2F;index.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    $(document).ready(function () &#123;</span><br><span class="line">      var entries &#x3D; [</span><br><span class="line">        &#123; label: &#39;Back to top&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Bootstrap&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Carousel&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Countdown&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Dropdown Menu&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;CodePen&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;three.js&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Form Validation&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;JS Compress&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;TinyPNG&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Can I Use&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;URL shortener&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Grid Layout&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Twitter&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;deviantART&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Gulp&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Browsersync&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;GitHub&#39;, url: &#39;https:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Shadertoy&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Tree View&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;jsPerf&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Foundation&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;CreateJS&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Velocity.js&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;TweenLite&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;jQuery&#39;, url: &#39;http:&#x2F;&#x2F;www.lanrenzhijia.com&#x2F;&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Notification&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;,</span><br><span class="line">        &#123; label: &#39;Parallax&#39;, url: &#39;#&#39;, target: &#39;_top&#39; &#125;</span><br><span class="line">      ];</span><br><span class="line"></span><br><span class="line">      var settings &#x3D; &#123;</span><br><span class="line">        entries: entries,</span><br><span class="line">        width: 120,</span><br><span class="line">        height: 150,</span><br><span class="line">        radius: &#39;85%&#39;,</span><br><span class="line">        radiusMin: 75,</span><br><span class="line">        bgDraw: true,</span><br><span class="line">        bgColor: &#39;rgba(0,0,0,0)&#39;,</span><br><span class="line">        opacityOver: 1.00,</span><br><span class="line">        opacityOut: 0.05,</span><br><span class="line">        opacitySpeed: 6,</span><br><span class="line">        fov: 800,</span><br><span class="line">        speed: 0.5,</span><br><span class="line">        fontFamily: &#39;Oswald, Arial, sans-serif&#39;,</span><br><span class="line">        fontSize: &#39;15&#39;,</span><br><span class="line">        fontColor: &#39;orange&#39;,</span><br><span class="line">        fontWeight: &#39;normal&#39;,&#x2F;&#x2F;bold</span><br><span class="line">        fontStyle: &#39;normal&#39;,&#x2F;&#x2F;italic </span><br><span class="line">        fontStretch: &#39;normal&#39;,&#x2F;&#x2F;wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded</span><br><span class="line">        fontToUpperCase: true</span><br><span class="line">      &#125;;</span><br><span class="line">      $(&#39;#tag-cloud&#39;).svg3DTagCloud(settings);</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br></pre></td><td class="code"><pre><span class="line">[class^&#x3D;&quot;icon-&quot;], [class*&#x3D;&quot; icon-&quot;] &#123;</span><br><span class="line">  font-family: &#39;icomoon&#39;;</span><br><span class="line">  speak: none;</span><br><span class="line">  font-style: normal;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">  font-variant: normal;</span><br><span class="line">  text-transform: none;</span><br><span class="line">  line-height: 1;</span><br><span class="line">  &#x2F;* Better Font Rendering &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body, html &#123; font-size: 100%;   padding: 0; margin: 0;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* Reset *&#x2F;</span><br><span class="line">*,</span><br><span class="line">*:after,</span><br><span class="line">*:before &#123;</span><br><span class="line">  -webkit-box-sizing: border-box;</span><br><span class="line">  -moz-box-sizing: border-box;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* Clearfix hack by Nicolas Gallagher: http:&#x2F;&#x2F;nicolasgallagher.com&#x2F;micro-clearfix-hack&#x2F; *&#x2F;</span><br><span class="line">.clearfix:before,</span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">  content: &quot; &quot;;</span><br><span class="line">  display: table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">  clear: both;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body&#123;</span><br><span class="line">  &#x2F;* background: #494A5F; *&#x2F;</span><br><span class="line">  color: #D5D6E2;</span><br><span class="line">  font-weight: 500;</span><br><span class="line">  font-size: 1.05em;</span><br><span class="line">  font-family: &quot;Microsoft YaHei&quot;,&quot;瀹嬩綋&quot;,&quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Helvetica, Arial,sans-serif, FreeSans, Arimo;</span><br><span class="line">&#125;</span><br><span class="line">a&#123;color: #2fa0ec;text-decoration: none;outline: none;&#125;</span><br><span class="line">a:hover,a:focus&#123;color:#74777b;&#125;</span><br><span class="line"></span><br><span class="line">.zzsc-container&#123;</span><br><span class="line">  width: 120px;</span><br><span class="line">  height: 150px;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  background: url(.&#x2F;true.jpeg) no-repeat;</span><br><span class="line">  background-size: cover</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;* Header *&#x2F;</span><br><span class="line">.zzsc-header&#123;</span><br><span class="line">  padding: 1em 190px 1em;</span><br><span class="line">  letter-spacing: -1px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: #66677c;</span><br><span class="line">&#125;</span><br><span class="line">.zzsc-header h1 &#123;</span><br><span class="line">  color: #D5D6E2;</span><br><span class="line">  font-weight: 600;</span><br><span class="line">  font-size: 2em;</span><br><span class="line">  line-height: 1;</span><br><span class="line">  margin-bottom: 0;</span><br><span class="line">  font-family: &quot;Microsoft YaHei&quot;,&quot;瀹嬩綋&quot;,&quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Helvetica, Arial,sans-serif, FreeSans, Arimo;</span><br><span class="line">&#125;</span><br><span class="line">.zzsc-header h1 span &#123;</span><br><span class="line">  font-family: &quot;Microsoft YaHei&quot;,&quot;瀹嬩綋&quot;,&quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Helvetica, Arial,sans-serif, FreeSans, Arimo;</span><br><span class="line">  display: block;</span><br><span class="line">  font-size: 60%;</span><br><span class="line">  font-weight: 400;</span><br><span class="line">  padding: 0.8em 0 0.5em 0;</span><br><span class="line">  color: #c3c8cd;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*nav*&#x2F;</span><br><span class="line">.zzsc-demo a&#123;color: #fff;text-decoration: none;&#125;</span><br><span class="line">.zzsc-demo&#123;width: 100%;padding-bottom: 1.2em;&#125;</span><br><span class="line">.zzsc-demo a&#123;display: inline-block;margin: 0.5em;padding: 0.6em 1em;border: 3px solid #fff;font-weight: 700;&#125;</span><br><span class="line">.zzsc-demo a:hover&#123;opacity: 0.6;&#125;</span><br><span class="line">.zzsc-demo a.current&#123;background:#1d7db1;color: #fff; &#125;</span><br><span class="line">&#x2F;* Top Navigation Style *&#x2F;</span><br><span class="line">.zzsc-links &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  white-space: nowrap;</span><br><span class="line">  font-size: 1.5em;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.zzsc-links::after &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 50%;</span><br><span class="line">  margin-left: -1px;</span><br><span class="line">  width: 2px;</span><br><span class="line">  height: 100%;</span><br><span class="line">  background: #dbdbdb;</span><br><span class="line">  content: &#39;&#39;;</span><br><span class="line">  -webkit-transform: rotate3d(0,0,1,22.5deg);</span><br><span class="line">  transform: rotate3d(0,0,1,22.5deg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.zzsc-icon &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  margin: 0.5em;</span><br><span class="line">  padding: 0em 0;</span><br><span class="line">  width: 1.5em;</span><br><span class="line">  text-decoration: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.zzsc-icon span &#123;</span><br><span class="line">  display: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.zzsc-icon:before &#123;</span><br><span class="line">  margin: 0 5px;</span><br><span class="line">  text-transform: none;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">  font-style: normal;</span><br><span class="line">  font-variant: normal;</span><br><span class="line">  font-family: &#39;icomoon&#39;;</span><br><span class="line">  line-height: 1;</span><br><span class="line">  speak: none;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;* footer *&#x2F;</span><br><span class="line">.zzsc-footer&#123;width: 100%;padding-top: 10px;&#125;</span><br><span class="line">.zzsc-small&#123;font-size: 0.8em;&#125;</span><br><span class="line">.center&#123;text-align: center;&#125;</span><br><span class="line">&#x2F;****&#x2F;</span><br><span class="line">.related &#123;</span><br><span class="line">  color: #fff;</span><br><span class="line">  &#x2F;* background: #494A5F; *&#x2F;</span><br><span class="line">  text-align: center;</span><br><span class="line">  font-size: 1.25em;</span><br><span class="line">  padding: 0.5em 0;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.related &gt; a &#123;</span><br><span class="line">  vertical-align: top;</span><br><span class="line">  width: calc(100% - 20px);</span><br><span class="line">  max-width: 340px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  text-align: center;</span><br><span class="line">  margin: 20px 10px;</span><br><span class="line">  padding: 25px;</span><br><span class="line">  font-family: &quot;Microsoft YaHei&quot;,&quot;瀹嬩綋&quot;,&quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Helvetica, Arial,sans-serif, FreeSans, Arimo;</span><br><span class="line">&#125;</span><br><span class="line">.related a &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  text-align: left;</span><br><span class="line">  margin: 20px auto;</span><br><span class="line">  padding: 10px 20px;</span><br><span class="line">  opacity: 0.8;</span><br><span class="line">  -webkit-transition: opacity 0.3s;</span><br><span class="line">  transition: opacity 0.3s;</span><br><span class="line">  -webkit-backface-visibility: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.related a:hover,</span><br><span class="line">.related a:active &#123;</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.related a img &#123;</span><br><span class="line">  max-width: 100%;</span><br><span class="line">  opacity: 0.8;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">&#125;</span><br><span class="line">.related a:hover img,</span><br><span class="line">.related a:active img &#123;</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br><span class="line">.related h3&#123;font-family: &quot;Microsoft YaHei&quot;, sans-serif;&#125;</span><br><span class="line">.related a h3 &#123;</span><br><span class="line">  font-weight: 300;</span><br><span class="line">  margin-top: 0.15em;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;* icomoon *&#x2F;</span><br><span class="line">.icon-zzsc-home-outline:before &#123;</span><br><span class="line">  content: &quot;\e5000&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.icon-zzsc-arrow-forward-outline:before &#123;</span><br><span class="line">  content: &quot;\e5001&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@media screen and (max-width: 50em) &#123;</span><br><span class="line">  .zzsc-header &#123;</span><br><span class="line">      padding: 3em 10% 4em;</span><br><span class="line">  &#125;</span><br><span class="line">  .zzsc-header h1 &#123;</span><br><span class="line">      font-size:2em;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@media screen and (max-width: 40em) &#123;</span><br><span class="line">  .zzsc-header h1 &#123;</span><br><span class="line">      font-size: 1.5em;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@media screen and (max-width: 30em) &#123;</span><br><span class="line">  .zzsc-header h1 &#123;</span><br><span class="line">      font-size:1.2em;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!function () &#123; function t(t, e) &#123; function n() &#123; A &#x3D; document.createElementNS(E, &quot;svg&quot;), A.addEventListener(&quot;mousemove&quot;, v), t.appendChild(A), p.bgDraw &amp;&amp; (P &#x3D; document.createElementNS(E, &quot;rect&quot;), P.setAttribute(&quot;x&quot;, 0), P.setAttribute(&quot;y&quot;, 0), P.setAttribute(&quot;fill&quot;, p.bgColor), A.appendChild(P)), a(), i(), d(), window.addEventListener(&quot;resize&quot;, y) &#125; function i() &#123; var e &#x3D; window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth, n &#x3D; window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight, i &#x3D; e, r &#x3D; n; p.width.toString().indexOf(&quot;%&quot;) &gt; 0 || p.height.toString().indexOf(&quot;%&quot;) &gt; 0 ? (i &#x3D; Math.round(t.offsetWidth &#x2F; 100 * parseInt(p.width)), r &#x3D; Math.round(i &#x2F; 100 * parseInt(p.height))) : (i &#x3D; parseInt(p.width), r &#x3D; parseInt(p.height)), i &gt;&#x3D; e &amp;&amp; (i &#x3D; e), r &gt;&#x3D; n &amp;&amp; (r &#x3D; n), b &#x3D; &#123; x: i &#x2F; 2, y: r &#x2F; 2 &#125;, O.x &#x3D; p.speed &#x2F; b.x, O.y &#x3D; p.speed &#x2F; b.y, w &#x3D; i &gt;&#x3D; r ? r &#x2F; 100 * parseInt(p.radius) : i &#x2F; 100 * parseInt(p.radius), 1 &gt; w &amp;&amp; (w &#x3D; 1), x &#x3D; w &#x2F; 2, x &lt; p.radiusMin &amp;&amp; (x &#x3D; p.radiusMin, w &#x3D; 2 * x), A.setAttribute(&quot;width&quot;, i), A.setAttribute(&quot;height&quot;, r), p.bgDraw &amp;&amp; (P.setAttribute(&quot;width&quot;, i), P.setAttribute(&quot;height&quot;, r)), o(x) &#125; function o(t) &#123; for (var e &#x3D; 0, n &#x3D; S.length; n &gt; e; e++)r(S[e], t) &#125; function r(t, e) &#123; var n &#x3D; t.vectorPosition.x - C.x, i &#x3D; t.vectorPosition.y - C.y, o &#x3D; t.vectorPosition.z - C.z, r &#x3D; Math.sqrt(n * n + i * i + o * o); t.vectorPosition.x &#x2F;&#x3D; r, t.vectorPosition.y &#x2F;&#x3D; r, t.vectorPosition.z &#x2F;&#x3D; r, t.vectorPosition.x *&#x3D; e, t.vectorPosition.y *&#x3D; e, t.vectorPosition.z *&#x3D; e &#125; function s(t, e, n, i, o) &#123; var r &#x3D; &#123;&#125;; return r.element &#x3D; document.createElementNS(E, &quot;text&quot;), r.element.setAttribute(&quot;x&quot;, 0), r.element.setAttribute(&quot;y&quot;, 0), r.element.setAttribute(&quot;fill&quot;, p.fontColor), r.element.setAttribute(&quot;font-family&quot;, p.fontFamily), r.element.setAttribute(&quot;font-size&quot;, p.fontSize), r.element.setAttribute(&quot;font-weight&quot;, p.fontWeight), r.element.setAttribute(&quot;font-style&quot;, p.fontStyle), r.element.setAttribute(&quot;font-stretch&quot;, p.fontStretch), r.element.setAttribute(&quot;text-anchor&quot;, &quot;middle&quot;), r.element.textContent &#x3D; p.fontToUpperCase ? e.label.toUpperCase() : e.label, r.link &#x3D; document.createElementNS(E, &quot;a&quot;), r.link.setAttributeNS(&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xlink&quot;, &quot;xlink:href&quot;, e.url), r.link.setAttribute(&quot;target&quot;, e.target), r.link.addEventListener(&quot;mouseover&quot;, f, !0), r.link.addEventListener(&quot;mouseout&quot;, h, !0), r.link.appendChild(r.element), r.index &#x3D; t, r.mouseOver &#x3D; !1, r.vectorPosition &#x3D; &#123; x: n, y: i, z: o &#125;, r.vector2D &#x3D; &#123; x: 0, y: 0 &#125;, A.appendChild(r.link), r &#125; function a() &#123; for (var t &#x3D; 1, e &#x3D; p.entries.length + 1; e &gt; t; t++) &#123; var n &#x3D; Math.acos(-1 + (2 * t - 1) &#x2F; e), i &#x3D; Math.sqrt(e * Math.PI) * n, o &#x3D; Math.cos(i) * Math.sin(n), r &#x3D; Math.sin(i) * Math.sin(n), a &#x3D; Math.cos(n), u &#x3D; s(t - 1, p.entries[t - 1], o, r, a); S.push(u) &#125; &#125; function u(t) &#123; for (var e &#x3D; 0, n &#x3D; S.length; n &gt; e; e++) &#123; var i &#x3D; S[e]; if (i.element.getAttribute(&quot;x&quot;) &#x3D;&#x3D;&#x3D; t.getAttribute(&quot;x&quot;) &amp;&amp; i.element.getAttribute(&quot;y&quot;) &#x3D;&#x3D;&#x3D; t.getAttribute(&quot;y&quot;)) return i &#125; &#125; function c(t) &#123; for (var e &#x3D; u(t), n &#x3D; 0, i &#x3D; S.length; i &gt; n; n++) &#123; var o &#x3D; S[n]; o.index &#x3D;&#x3D;&#x3D; e.index ? o.mouseOver &#x3D; !0 : o.mouseOver &#x3D; !1 &#125; &#125; function l() &#123; var t &#x3D; O.x * z.x - p.speed, e &#x3D; p.speed - O.y * z.y, n &#x3D; t * k, i &#x3D; e * k; D.sx &#x3D; Math.sin(n), D.cx &#x3D; Math.cos(n), D.sy &#x3D; Math.sin(i), D.cy &#x3D; Math.cos(i); for (var o &#x3D; 0, r &#x3D; S.length; r &gt; o; o++) &#123; var s &#x3D; S[o]; if (M) &#123; var a &#x3D; s.vectorPosition.x, u &#x3D; s.vectorPosition.y * D.sy + s.vectorPosition.z * D.cy; s.vectorPosition.x &#x3D; a * D.cx + u * D.sx, s.vectorPosition.y &#x3D; s.vectorPosition.y * D.cy + s.vectorPosition.z * -D.sy, s.vectorPosition.z &#x3D; a * -D.sx + u * D.cx &#125; var c &#x3D; p.fov &#x2F; (p.fov + s.vectorPosition.z); s.vector2D.x &#x3D; s.vectorPosition.x * c + b.x, s.vector2D.y &#x3D; s.vectorPosition.y * c + b.y, s.element.setAttribute(&quot;x&quot;, s.vector2D.x), s.element.setAttribute(&quot;y&quot;, s.vector2D.y); var l; M ? (l &#x3D; (x - s.vectorPosition.z) &#x2F; w, l &lt; p.opacityOut &amp;&amp; (l &#x3D; p.opacityOut)) : (l &#x3D; parseFloat(s.element.getAttribute(&quot;opacity&quot;)), l +&#x3D; s.mouseOver ? (p.opacityOver - l) &#x2F; p.opacitySpeed : (p.opacityOut - l) &#x2F; p.opacitySpeed), s.element.setAttribute(&quot;opacity&quot;, l) &#125; S &#x3D; S.sort(function (t, e) &#123; return e.vectorPosition.z - t.vectorPosition.z &#125;) &#125; function d() &#123; requestAnimFrame(d), l() &#125; function f(t) &#123; M &#x3D; !1, c(t.target) &#125; function h(t) &#123; M &#x3D; !0 &#125; function v(t) &#123; z &#x3D; m(A, t) &#125; function m(t, e) &#123; var n &#x3D; t.getBoundingClientRect(); return &#123; x: e.clientX - n.left, y: e.clientY - n.top &#125; &#125; function y(t) &#123; i() &#125; var p &#x3D; &#123; entries: [], width: 480, height: 480, radius: &quot;70%&quot;, radiusMin: 75, bgDraw: !0, bgColor: &quot;#000&quot;, opacityOver: 1, opacityOut: .05, opacitySpeed: 6, fov: 800, speed: 2, fontFamily: &quot;Arial, sans-serif&quot;, fontSize: &quot;15&quot;, fontColor: &quot;#fff&quot;, fontWeight: &quot;normal&quot;, fontStyle: &quot;normal&quot;, fontStretch: &quot;normal&quot;, fontToUpperCase: !1 &#125;; if (void 0 !&#x3D;&#x3D; e) for (var g in e) e.hasOwnProperty(g) &amp;&amp; p.hasOwnProperty(g) &amp;&amp; (p[g] &#x3D; e[g]); if (!p.entries.length) return !1; var x, w, b, A, P, S &#x3D; [], M &#x3D; !0, z &#x3D; &#123; x: 0, y: 0 &#125;, C &#x3D; &#123; x: 0, y: 0, z: 0 &#125;, O &#x3D; &#123; x: 0, y: 0 &#125;, D &#x3D; &#123; sx: 0, cx: 0, sy: 0, cy: 0 &#125;, k &#x3D; Math.PI &#x2F; 180, E &#x3D; &quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot;; window.requestAnimFrame &#x3D; function () &#123; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (t) &#123; window.setTimeout(t, 1e3 &#x2F; 60) &#125; &#125;(), n() &#125; window.SVG3DTagCloud &#x3D; t &#125;(), &quot;undefined&quot; !&#x3D; typeof jQuery &amp;&amp; !function (t) &#123; t.fn.svg3DTagCloud &#x3D; function (e) &#123; return this.each(function () &#123; t.data(this, &quot;plugin_SVG3DTagCloud&quot;) || t.data(this, &quot;plugin_SVG3DTagCloud&quot;, new SVG3DTagCloud(this, e)) &#125;) &#125; &#125;(jQuery);</span><br></pre></td></tr></table></figure>
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>entries：一个对象数组，用于初始化标签。<br>width：标签云的宽度。<br>height：标签云的高度。<br>radius：标签云的半径。<br>radiusMin：标签云的最小半径。<br>bgDraw：是否使用背景色。<br>bgColor：背景颜色。<br>opacityOver：鼠标滑过标签时的标签透明度。<br>opacityOut：鼠标离开标签时的标签透明度。<br>opacitySpeed：标签透明度过渡速度。<br>fov：how the content is presented。<br>speed：标签云动画的速度。<br>fontFamily：标签云的字体。<br>fontSize：标签云的字体大小。<br>fontColor：标签云的字体颜色。<br>fontWeight：标签云的字体的fontWeight。<br>fontStyle：标签云的字体样式。<br>fontStretch：标签云的字体的fontStretch。<br>fontToUpperCase：是否转换为大写字体。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Liu YouXiang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://chuheji.github.io/2020/08/24/20200824/%E5%9F%BA%E4%BA%8EjQuery%E7%9A%843D%E6%BB%9A%E5%8A%A8%E8%AF%8D%E4%BA%91%E5%9B%BE/" title="基于jQuery的3D滚动词云图">http://chuheji.github.io/2020/08/24/20200824/基于jQuery的3D滚动词云图/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 可视化</a>
+              <a href="/tags/jQuery/" rel="tag"><i class="fa fa-tag"></i> jQuery</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/24/20200824/JS%E6%93%8D%E4%BD%9CDOM%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/" rel="prev" title="JS操作DOM的一些方法记录">
+      <i class="fa fa-chevron-left"></i> JS操作DOM的一些方法记录
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu YouXiang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">30k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">27 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"lyFGHnWGG5lrEgs3Eu9yrUxE-gzGzoHsz","appKey":"J99J7sKxplVW3qx5bLRm2jF3","placeholder":"欢迎留言","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"language":"zh-cn","visitor":true,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
