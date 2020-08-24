@@ -67,6 +67,20 @@
 
   
   <url>
+    <loc>http://chuheji.github.io/tags/JavaScript/</loc>
+    <lastmod>2020-08-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/electron/</loc>
+    <lastmod>2020-08-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://chuheji.github.io/tags/element/</loc>
     <lastmod>2020-08-24</lastmod>
     <changefreq>daily</changefreq>
@@ -81,14 +95,14 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/JavaScript/</loc>
+    <loc>http://chuheji.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
     <lastmod>2020-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/electron/</loc>
+    <loc>http://chuheji.github.io/tags/jQuery/</loc>
     <lastmod>2020-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -108,28 +122,7 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://chuheji.github.io/tags/jQuery/</loc>
-    <lastmod>2020-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
-    <lastmod>2020-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/element/</loc>
-    <lastmod>2020-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>http://chuheji.github.io/categories/JavaScript/</loc>
@@ -146,7 +139,14 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/categories/NodeJS/</loc>
+    <loc>http://chuheji.github.io/categories/element/</loc>
+    <lastmod>2020-08-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/vue/</loc>
     <lastmod>2020-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -160,7 +160,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/categories/vue/</loc>
+    <loc>http://chuheji.github.io/categories/NodeJS/</loc>
     <lastmod>2020-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
