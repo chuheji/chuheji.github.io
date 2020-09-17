@@ -22,31 +22,34 @@
     var CONFIG = {"hostname":"chuheji.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="楚河纪">
-<meta property="og:url" content="http://chuheji.github.io/page/3/index.html">
+  <meta name="description" content="背景当表单需要可以编辑的时候我们往往需要将当前编辑数据回显在表单上，最近在antd+react项目中遇到这个需求点击表格中的编辑按钮，跳转到编辑页面将数据回显，我使用了在浏览器地址中携带id哈希值的方法传递id，然后通过http请求拿到数据setState 方案 刚开始使用了initialValues来设置初始值，结果没有效果，以为是setState是异步的导致还没有拿到值的时候表单已经渲染出来了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="antd表单回显">
+<meta property="og:url" content="http://chuheji.github.io/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/index.html">
 <meta property="og:site_name" content="楚河纪">
-<meta property="og:description" content="博客">
+<meta property="og:description" content="背景当表单需要可以编辑的时候我们往往需要将当前编辑数据回显在表单上，最近在antd+react项目中遇到这个需求点击表格中的编辑按钮，跳转到编辑页面将数据回显，我使用了在浏览器地址中携带id哈希值的方法传递id，然后通过http请求拿到数据setState 方案 刚开始使用了initialValues来设置初始值，结果没有效果，以为是setState是异步的导致还没有拿到值的时候表单已经渲染出来了">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-17T07:16:37.000Z">
+<meta property="article:modified_time" content="2020-09-17T07:30:18.455Z">
 <meta property="article:author" content="Liu YouXiang">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="antd">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://chuheji.github.io/page/3/">
+<link rel="canonical" href="http://chuheji.github.io/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>楚河纪</title>
+  <title>antd表单回显 | 楚河纪</title>
   
 
 
@@ -158,7 +161,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -170,6 +173,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">核心代码</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -228,13 +232,14 @@
       <div class="main-inner">
         
 
-        <div class="content index posts-expand">
+        <div class="content post posts-expand">
           
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/08/25/20200825/http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%AF%B9%E6%AF%94/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -248,10 +253,9 @@
 
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/25/20200825/http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">http各个版本的特点和对比</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          antd表单回显
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -261,7 +265,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-25 18:38:10 / 修改时间：18:50:10" itemprop="dateCreated datePublished" datetime="2020-08-25T18:38:10+08:00">2020-08-25</time>
+              <time title="创建时间：2020-09-17 15:16:37 / 修改时间：15:30:18" itemprop="dateCreated datePublished" datetime="2020-09-17T15:16:37+08:00">2020-09-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,12 +273,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/08/25/20200825/http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%AF%B9%E6%AF%94/" class="post-meta-item leancloud_visitors" data-flag-title="http各个版本的特点和对比" title="阅读次数">
+            <span id="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/" class="post-meta-item leancloud_visitors" data-flag-title="antd表单回显" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -289,8 +293,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/25/20200825/http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%AF%B9%E6%AF%94/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/25/20200825/http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -300,7 +304,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>406</span>
+              <span>807</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -317,58 +321,66 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="http1-0"><a href="#http1-0" class="headerlink" title="http1.0"></a>http1.0</h2><ul>
-<li>请求头和响应头</li>
-<li>Cache缓存机制</li>
-<li>每次http请求都要经历三步：建立TCP连接、传输HTTP数据、断开TCP连接</li>
-</ul>
-<h2 id="http1-1"><a href="#http1-1" class="headerlink" title="http1.1"></a>http1.1</h2><ul>
-<li>持久连接，浏览器中对于同一个域名，默认允许同时建立6个TCP持久连接</li>
-<li>存在队头阻塞的问题</li>
-<li>增加了Host字段，提供虚拟主机的支持</li>
-<li>对动态生成的内容提供了完美支持</li>
-<li>客户端Cookie、安全机制</li>
-</ul>
-<h3 id="http1-1缺点："><a href="#http1-1缺点：" class="headerlink" title="http1.1缺点："></a>http1.1缺点：</h3><ul>
-<li>带宽利用率差</li>
-<li>TCP的慢启动。</li>
-<li>同时开启多条TCP连接，那么这些连接会竞争固定的带宽。</li>
-<li>HTTP/1.1队头阻塞的问题</li>
-</ul>
-<h2 id="http2"><a href="#http2" class="headerlink" title="http2"></a>http2</h2><p>增加了以下特性：</p>
-<ul>
-<li>多路复用</li>
-<li>可以设置请求的优先级</li>
-<li>服务器推送</li>
-<li>头部压缩</li>
-</ul>
-<h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>多路复用是通过在协议栈中添加二进制分帧实现的，它可以将请求分开去传输，这样可以使浏览器收到更高优先级的请求时优先处理</p>
-<h2 id="https"><a href="#https" class="headerlink" title="https"></a>https</h2><p>http是明文传输，https是加密的http请求，使用SSL/TSL加密，可以对发起HTTP请求的数据进行加密操作和对接收到HTTP的内容进行解密操作。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当表单需要可以编辑的时候我们往往需要将当前编辑数据回显在表单上，最近在antd+react项目中遇到这个需求<br>点击表格中的编辑按钮，跳转到编辑页面将数据回显，我使用了在浏览器地址中携带id哈希值的方法传递id，然后通过http请求拿到数据setState</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><ol>
+<li>刚开始使用了initialValues来设置初始值，结果没有效果，以为是setState是异步的导致还没有拿到值的时候表单已经渲染出来了</li>
+<li>使用EventBus代替浏览器地址中携带hash的方法，结果也是不行的，所以确定不是setState的问题</li>
+<li>最后通过查阅文档得知antd的form有一个useForm的方法，使用useForm和setFieldsValue方法就解决了这个问题</li>
+</ol>
+<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line"> Form,</span><br><span class="line">&#125; from &#39;antd&#39;;</span><br><span class="line"></span><br><span class="line">const [form] &#x3D; Form.useForm();</span><br><span class="line"></span><br><span class="line">React.useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">  const id &#x3D; Number(props.location.hash.replace(&#39;#&#39;, &#39;&#39;));</span><br><span class="line">  getList(&#123; id &#125;).then((res: any) &#x3D;&gt; &#123;</span><br><span class="line">    form.setFieldsValue(res.data)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, [])</span><br><span class="line"></span><br><span class="line">&lt;Form form&#x3D;&#123;form&#125; onFinish&#x3D;&#123;Finish&#125;&gt;</span><br><span class="line">  &lt;Form.Item name&#x3D;&quot;title&quot; label&#x3D;&quot;名称&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;Form.Item&gt;</span><br><span class="line">&lt;Form&gt;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Liu YouXiang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://chuheji.github.io/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/" title="antd表单回显">http://chuheji.github.io/2020/09/17/20200917/antd表单回显/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"><i class="fa fa-tag"></i> react</a>
+              <a href="/tags/antd/" rel="tag"><i class="fa fa-tag"></i> antd</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/27/20200827/es%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/" rel="prev" title="es的一些新特性">
+      <i class="fa fa-chevron-left"></i> es的一些新特性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
 
         </div>
         
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
