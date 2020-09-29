@@ -187,7 +187,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -236,7 +236,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/09/29/20200929/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -252,7 +252,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/" class="post-title-link" itemprop="url">antd表单回显</a>
+            <a href="/2020/09/29/20200929/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">上拉加载的实现</a>
         </h2>
 
         <div class="post-meta">
@@ -263,7 +263,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-17 15:16:37 / 修改时间：15:30:18" itemprop="dateCreated datePublished" datetime="2020-09-17T15:16:37+08:00">2020-09-17</time>
+              <time title="创建时间：2020-09-29 12:15:15 / 修改时间：13:44:43" itemprop="dateCreated datePublished" datetime="2020-09-29T12:15:15+08:00">2020-09-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,7 +276,7 @@
             </span>
 
           
-            <span id="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/" class="post-meta-item leancloud_visitors" data-flag-title="antd表单回显" title="阅读次数">
+            <span id="/2020/09/29/20200929/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="post-meta-item leancloud_visitors" data-flag-title="上拉加载的实现" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -291,8 +291,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/17/20200917/antd%E8%A1%A8%E5%8D%95%E5%9B%9E%E6%98%BE/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/09/29/20200929/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/29/20200929/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -302,7 +302,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>807</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -319,13 +319,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当表单需要可以编辑的时候我们往往需要将当前编辑数据回显在表单上，最近在antd+react项目中遇到这个需求<br>点击表格中的编辑按钮，跳转到编辑页面将数据回显，我使用了在浏览器地址中携带id哈希值的方法传递id，然后通过http请求拿到数据setState</p>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><ol>
-<li>刚开始使用了initialValues来设置初始值，结果没有效果，以为是setState是异步的导致还没有拿到值的时候表单已经渲染出来了</li>
-<li>使用EventBus代替浏览器地址中携带hash的方法，结果也是不行的，所以确定不是setState的问题</li>
-<li>最后通过查阅文档得知antd的form有一个useForm的方法，使用useForm和setFieldsValue方法就解决了这个问题</li>
+          <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>上拉加载是一种很常见的需求了，前段时间项目里有用到，在此记录一下</p>
+<h2 id="主要问题分析"><a href="#主要问题分析" class="headerlink" title="主要问题分析"></a>主要问题分析</h2><ol>
+<li>如何判断滚动条已经在最底部并发生上拉的动作</li>
+<li>防抖</li>
 </ol>
-<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line"> Form,</span><br><span class="line">&#125; from &#39;antd&#39;;</span><br><span class="line"></span><br><span class="line">const [form] &#x3D; Form.useForm();</span><br><span class="line"></span><br><span class="line">React.useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">  const id &#x3D; Number(props.location.hash.replace(&#39;#&#39;, &#39;&#39;));</span><br><span class="line">  getList(&#123; id &#125;).then((res: any) &#x3D;&gt; &#123;</span><br><span class="line">    form.setFieldsValue(res.data)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, [])</span><br><span class="line"></span><br><span class="line">&lt;Form form&#x3D;&#123;form&#125; onFinish&#x3D;&#123;Finish&#125;&gt;</span><br><span class="line">  &lt;Form.Item name&#x3D;&quot;title&quot; label&#x3D;&quot;名称&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;Form.Item&gt;</span><br><span class="line">&lt;Form&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取列表，这里用的是ssr框架next的语法</span><br><span class="line">const getList &#x3D; async () &#x3D;&gt; &#123;</span><br><span class="line">  const param &#x3D; &#123;</span><br><span class="line">    page,</span><br><span class="line">    start: starts,</span><br><span class="line">  &#125;;</span><br><span class="line">  try &#123;</span><br><span class="line">    const data &#x3D; await getFeedList(param, token);</span><br><span class="line">    setFeedList(feedList.concat(data.list &amp;&amp; data.list.length ? data.list : []));</span><br><span class="line">    setIsLoading(false);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.error(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const callback &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; 获取列表区域dom</span><br><span class="line">  const ref &#x3D; document.querySelector(&#39;.wrap-home&#39;);</span><br><span class="line">  if (ref) &#123;</span><br><span class="line">    &#x2F;&#x2F; 列表区域高度</span><br><span class="line">    const &#123; top &#125; &#x3D; ref.getBoundingClientRect();</span><br><span class="line">    &#x2F;&#x2F; 可视区域高度</span><br><span class="line">    const windowHeight &#x3D; window.screen.height;</span><br><span class="line">    &#x2F;&#x2F; 滚动条高度</span><br><span class="line">    const &#123; scrollHeight &#125; &#x3D; document.body;</span><br><span class="line">    &#x2F;&#x2F; 滚动条已经在最底部并发生上拉的动作时触发</span><br><span class="line">    if (top &amp;&amp; Math.abs(top) + windowHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">      setIsLoading(true);</span><br><span class="line">      setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        setStarts(starts + 10);</span><br><span class="line">        getList();</span><br><span class="line">      &#125;, 0);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 使用umi-hooks的useDebounceFn做防抖</span><br><span class="line">const &#123; run &#125; &#x3D; useDebounceFn(() &#x3D;&gt; &#123;</span><br><span class="line">  if (isLoading) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  callback();</span><br><span class="line">  return false;</span><br><span class="line">&#125;, 200);</span><br><span class="line">useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">  window.addEventListener(&#39;scroll&#39;, run);</span><br><span class="line">  return () &#x3D;&gt; window.removeEventListener(&#39;scroll&#39;, run);</span><br><span class="line">&#125;, []);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -344,7 +347,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -396,13 +399,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">40k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">35 分钟</span>
+    <span title="站点阅读时长">36 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
