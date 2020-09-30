@@ -109,14 +109,14 @@
 
   
   <url>
-    <loc>http://chuheji.github.io/tags/electron/</loc>
+    <loc>http://chuheji.github.io/tags/NodeJS/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/element/</loc>
+    <loc>http://chuheji.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -124,6 +124,20 @@
   
   <url>
     <loc>http://chuheji.github.io/tags/vue/</loc>
+    <lastmod>2020-09-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/JavaScript/</loc>
+    <lastmod>2020-09-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/electron/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -179,21 +193,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/NodeJS/</loc>
-    <lastmod>2020-09-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
-    <lastmod>2020-09-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/JavaScript/</loc>
+    <loc>http://chuheji.github.io/tags/element/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -202,14 +202,21 @@
 
   
   <url>
-    <loc>http://chuheji.github.io/categories/electron/</loc>
+    <loc>http://chuheji.github.io/categories/NodeJS/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/categories/element/</loc>
+    <loc>http://chuheji.github.io/categories/JavaScript/</loc>
+    <lastmod>2020-09-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/electron/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -258,14 +265,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/categories/NodeJS/</loc>
-    <lastmod>2020-09-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/JavaScript/</loc>
+    <loc>http://chuheji.github.io/categories/element/</loc>
     <lastmod>2020-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
