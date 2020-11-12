@@ -22,20 +22,24 @@
     var CONFIG = {"hostname":"chuheji.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="报错：EROFS: read-only file system, open ‘xxx.zip’压缩文件上传在本地运行是没有问题的，打包后报错：EROFS:read-only file system,open ‘xxx.zip’，在打断点排查后锁定了是压缩文件时出了问题，尝试使用jszip库和zlib代替compressing是不可行的，然后去更改compressing的一些配置项也是不可行的，这个">
+  <meta name="description" content="描述在我们对项目使用 webpack 打包时，都会遇到打包时间过长的问题，尤其是大型项目，打包速度很慢，所以分享一些 webpack 提高打包速度的方法 方法 优化 loader 配置  检查项目中 loader 的匹配文件，删除不需要转换的文件类型  添加 module.noParse 配置  module.noParse 配置项可以让 Webpack 忽略对部分没采用模块化的文件的递归解析处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="electron上传压缩文件遇到的问题">
-<meta property="og:url" content="http://chuheji.github.io/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/index.html">
+<meta property="og:title" content="webpack如何优化打包速度">
+<meta property="og:url" content="http://chuheji.github.io/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/index.html">
 <meta property="og:site_name" content="楚河纪">
-<meta property="og:description" content="报错：EROFS: read-only file system, open ‘xxx.zip’压缩文件上传在本地运行是没有问题的，打包后报错：EROFS:read-only file system,open ‘xxx.zip’，在打断点排查后锁定了是压缩文件时出了问题，尝试使用jszip库和zlib代替compressing是不可行的，然后去更改compressing的一些配置项也是不可行的，这个">
+<meta property="og:description" content="描述在我们对项目使用 webpack 打包时，都会遇到打包时间过长的问题，尤其是大型项目，打包速度很慢，所以分享一些 webpack 提高打包速度的方法 方法 优化 loader 配置  检查项目中 loader 的匹配文件，删除不需要转换的文件类型  添加 module.noParse 配置  module.noParse 配置项可以让 Webpack 忽略对部分没采用模块化的文件的递归解析处理">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-24T03:22:47.000Z">
-<meta property="article:modified_time" content="2020-09-30T09:43:14.664Z">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/12/BxZiAx.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/12/BxZ14f.png">
+<meta property="article:published_time" content="2020-11-12T02:13:20.000Z">
+<meta property="article:modified_time" content="2020-11-12T02:54:47.818Z">
 <meta property="article:author" content="Liu YouXiang">
-<meta property="article:tag" content="electron">
+<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="打包">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2020/11/12/BxZiAx.png">
 
-<link rel="canonical" href="http://chuheji.github.io/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
+<link rel="canonical" href="http://chuheji.github.io/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/">
 
 
 <script class="page-configurations">
@@ -48,7 +52,7 @@
   };
 </script>
 
-  <title>electron上传压缩文件遇到的问题 | 楚河纪</title>
+  <title>webpack如何优化打包速度 | 楚河纪</title>
   
 
 
@@ -172,7 +176,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9AEROFS-read-only-file-system-open-%E2%80%98xxx-zip%E2%80%99"><span class="nav-number">1.</span> <span class="nav-text">报错：EROFS: read-only file system, open ‘xxx.zip’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%90%8Ecookie%E8%AE%BE%E7%BD%AE%E5%A4%B1%E6%95%88"><span class="nav-number">2.</span> <span class="nav-text">打包后cookie设置失效</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">结果</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -238,7 +242,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -253,7 +257,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          electron上传压缩文件遇到的问题
+          webpack如何优化打包速度
         </h1>
 
         <div class="post-meta">
@@ -262,28 +266,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-08-24 11:22:47" itemprop="dateCreated datePublished" datetime="2020-08-24T11:22:47+08:00">2020-08-24</time>
+              <time title="创建时间：2020-11-12 10:13:20 / 修改时间：10:54:47" itemprop="dateCreated datePublished" datetime="2020-11-12T10:13:20+08:00">2020-11-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-30 17:43:14" itemprop="dateModified" datetime="2020-09-30T17:43:14+08:00">2020-09-30</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/electron/" itemprop="url" rel="index"><span itemprop="name">electron</span></a>
+                  <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" class="post-meta-item leancloud_visitors" data-flag-title="electron上传压缩文件遇到的问题" title="阅读次数">
+            <span id="/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/" class="post-meta-item leancloud_visitors" data-flag-title="webpack如何优化打包速度" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -298,8 +296,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -309,7 +307,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>644</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -326,10 +324,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="报错：EROFS-read-only-file-system-open-‘xxx-zip’"><a href="#报错：EROFS-read-only-file-system-open-‘xxx-zip’" class="headerlink" title="报错：EROFS: read-only file system, open ‘xxx.zip’"></a>报错：EROFS: read-only file system, open ‘xxx.zip’</h2><p>压缩文件上传在本地运行是没有问题的，打包后报错：EROFS:read-only file system,open ‘xxx.zip’，在打断点排查后锁定了是压缩文件时出了问题，尝试使用jszip库和zlib代替compressing是不可行的，然后去更改compressing的一些配置项也是不可行的，这个问题的根本原因实际是打包后的环境下app不能操作其他文件，只能操作/tmp下的文件，所以在打包和删除文件的路径上加上’/tmp/‘前缀即可解决</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">compressing.zip</span><br><span class="line">.compressDir(params.path, <span class="string">&#x27;/tmp&#x27;</span> + <span class="string">&#x27;/&#x27;</span> + timeStamp + <span class="string">&quot;.zip&quot;</span>, &#123; <span class="attr">ignoreBase</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  event.sender.send(<span class="string">&quot;uploadDone&quot;</span>, err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>在我们对项目使用 webpack 打包时，都会遇到打包时间过长的问题，尤其是大型项目，打包速度很慢，所以分享一些 webpack 提高打包速度的方法</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
+<li>优化 loader 配置</li>
+</ol>
+<p>检查项目中 loader 的匹配文件，删除不需要转换的文件类型</p>
+<ol start="2">
+<li>添加 module.noParse 配置</li>
+</ol>
+<p>module.noParse 配置项可以让 Webpack 忽略对部分没采用模块化的文件的递归解析处理，这样做的好处是能提高构建性能。 原因是一些库，例如 jQuery 、ChartJS， 它们庞大又没有采用模块化标准，让 Webpack 去解析这些文件耗时又没有意义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    <span class="comment">// 单独完整的 `jquery.js` 相关文件没有采用模块化，忽略对其文件的递归解析处理</span></span><br><span class="line">    noParse: [<span class="regexp">/node_modules\/(jquery.js)/</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="打包后cookie设置失效"><a href="#打包后cookie设置失效" class="headerlink" title="打包后cookie设置失效"></a>打包后cookie设置失效</h2><p>cookie这里的问题是打包后不能写入cookie，尝试使用了electron中自带的seesion模块和后端设置cookie来解决问题，都是不可行的，其根本原因是文件系统中是禁止使用cookie的，所以用localstorage替代cookie即可解决</p>
+<ol start="3">
+<li>使用 HappyPack</li>
+</ol>
+<p>webpack 运行在 nodejs 上，它是单线程的，所以 webpack 需要处理的任务就得一件一件做，而 HappyPack 可以将任务分解为多个子任务，子任务就可以并发处理任务，处理完再将结果发送给主进程</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HappyPack = <span class="built_in">require</span>(<span class="string">&#x27;happypack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> os = <span class="built_in">require</span>(<span class="string">&#x27;os&#x27;</span>)</span><br><span class="line"><span class="comment">// 动态计算应该分配的核线程数(也可以分配固定核线程数)</span></span><br><span class="line"><span class="keyword">const</span> happyThreadPool = HappyPack.ThreadPool(&#123; <span class="attr">size</span>: os.cpus().length &#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">new</span> HappyPack(&#123;</span><br><span class="line">      <span class="comment">// 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件</span></span><br><span class="line">      id: <span class="string">&#x27;js&#x27;</span>,</span><br><span class="line">      <span class="comment">// 如何处理 .js 文件，用法和 Loader 配置中一样</span></span><br><span class="line">      loaders: [</span><br><span class="line">        &#123;</span><br><span class="line">          loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">          options: &#123;</span><br><span class="line">            <span class="comment">// babel-loader 支持缓存转换出的结果，通过 cacheDirectory 选项开启</span></span><br><span class="line">            cacheDirectory: <span class="literal">true</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">      <span class="comment">// 共享进程池</span></span><br><span class="line">      threadPool: happyThreadPool,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><ul>
+<li><p>优化前<br><img src="https://s3.ax1x.com/2020/11/12/BxZiAx.png" alt="picture1"></p>
+</li>
+<li><p>优化后<br><img src="https://s3.ax1x.com/2020/11/12/BxZ14f.png" alt="picture2"></p>
+</li>
+<li><p>优化幅度<br>38%</p>
+</li>
+</ul>
 
     </div>
 
@@ -345,7 +364,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://chuheji.github.io/2020/08/24/20200824/electron%E4%B8%8A%E4%BC%A0%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" title="electron上传压缩文件遇到的问题">http://chuheji.github.io/2020/08/24/20200824/electron上传压缩文件报错/</a>
+    <a href="http://chuheji.github.io/2020/11/12/20201112/webpack%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/" title="webpack如何优化打包速度">http://chuheji.github.io/2020/11/12/20201112/webpack如何优化打包速度/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -356,7 +375,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/electron/" rel="tag"><i class="fa fa-tag"></i> electron</a>
+              <a href="/tags/webpack/" rel="tag"><i class="fa fa-tag"></i> webpack</a>
+              <a href="/tags/%E6%89%93%E5%8C%85/" rel="tag"><i class="fa fa-tag"></i> 打包</a>
           </div>
 
         
@@ -365,13 +385,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/24/20200824/element-dateTimePicker/" rel="prev" title="element-ui设置开始时间大于当前时间，结束时间大于开始时间">
-      <i class="fa fa-chevron-left"></i> element-ui设置开始时间大于当前时间，结束时间大于开始时间
+    <a href="/2020/11/10/20201110/react-ts%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%BD%AC%E6%8D%A2%E8%A1%8C%E5%86%85%E6%A0%B7%E5%BC%8Fpx%E4%B8%BAvw%E7%9A%84loader/" rel="prev" title="react+ts项目如何编写一个转换行内样式px为vw的loader">
+      <i class="fa fa-chevron-left"></i> react+ts项目如何编写一个转换行内样式px为vw的loader
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/24/20200824/vue3D%E6%9F%B1%E7%8A%B6%E5%9B%BE/" rel="next" title="vue3D柱状图">
-      vue3D柱状图 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
