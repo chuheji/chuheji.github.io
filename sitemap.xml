@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://chuheji.github.io/2021/04/20/20200420/%E5%85%B3%E4%BA%8EPromise%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <loc>http://chuheji.github.io/2021/06/29/20210629/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</loc>
     
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/2021/06/30/20210630/flutter%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
+    
+    <lastmod>2021-06-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/2021/04/20/20210420/%E5%85%B3%E4%BA%8EPromise%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2021-06-30</lastmod>
     
   </url>
   
@@ -151,7 +165,7 @@
 
   <url>
     <loc>http://chuheji.github.io/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -159,126 +173,147 @@
   
   <url>
     <loc>http://chuheji.github.io/tags/NodeJS/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://chuheji.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://chuheji.github.io/tags/vue/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/es6/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/es/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/react/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/antd/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/webpack/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/%E6%89%93%E5%8C%85/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/chrome%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/electron/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/JavaScript/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/element/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/typescript/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/jQuery/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://chuheji.github.io/tags/http/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/JavaScript/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/electron/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/element/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/react/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/typescript/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/jQuery/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/antd/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/es/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/webpack/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/%E6%89%93%E5%8C%85/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/chrome%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://chuheji.github.io/tags/css/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/es6/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/flutter/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</loc>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -287,98 +322,112 @@
   
   <url>
     <loc>http://chuheji.github.io/categories/NodeJS/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/promise/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/es/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/react/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/webpack/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/chrome%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/electron/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/JavaScript/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/element/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/typescript/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/vue/</loc>
-    <lastmod>2021-06-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/jQuery/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://chuheji.github.io/categories/http/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/JavaScript/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/electron/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/element/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/typescript/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/vue/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/jQuery/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/react/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/es/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/webpack/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/chrome%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://chuheji.github.io/categories/css/</loc>
-    <lastmod>2021-06-25</lastmod>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/promise/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/flutter/</loc>
+    <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
