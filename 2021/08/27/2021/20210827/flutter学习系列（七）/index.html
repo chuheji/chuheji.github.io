@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.0.2">
-<meta name="baidu-site-verification" content="H5JandObie" />
-<meta name="google-site-verification" content="Dddg_InbxCJIqEwFtLfs1Hg2-C1iK57qViwloDJRyCY" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-middle.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-small.png">
@@ -24,31 +22,34 @@
     var CONFIG = {"hostname":"chuheji.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="楚河纪">
-<meta property="og:url" content="http://chuheji.github.io/index.html">
+  <meta name="description" content="上拉加载的实现我们需要使用ScrollController部件来完成上拉加载功能 ScrollController部件必须在ListView部件中使用 初始化： 1ScrollController scrollController &#x3D; ScrollController();  接收父组件的传值： 123456789101112class HotMoviesListWidget extends St">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter学习系列（七）">
+<meta property="og:url" content="http://chuheji.github.io/2021/08/27/2021/20210827/flutter%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%83%EF%BC%89/index.html">
 <meta property="og:site_name" content="楚河纪">
-<meta property="og:description" content="博客">
+<meta property="og:description" content="上拉加载的实现我们需要使用ScrollController部件来完成上拉加载功能 ScrollController部件必须在ListView部件中使用 初始化： 1ScrollController scrollController &#x3D; ScrollController();  接收父组件的传值： 123456789101112class HotMoviesListWidget extends St">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-27T08:02:40.000Z">
+<meta property="article:modified_time" content="2021-08-27T08:21:34.659Z">
 <meta property="article:author" content="Liu YouXiang">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="flutter">
+<meta property="article:tag" content="跨平台">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://chuheji.github.io/">
+<link rel="canonical" href="http://chuheji.github.io/2021/08/27/2021/20210827/flutter%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%83%EF%BC%89/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>楚河纪</title>
+  <title>flutter学习系列（七） | 楚河纪</title>
   
 
 
@@ -160,7 +161,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -172,6 +173,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">上拉加载的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">最终代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%88%B6%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">子组件</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -230,9 +232,10 @@
       <div class="main-inner">
         
 
-        <div class="content index posts-expand">
+        <div class="content post posts-expand">
           
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -250,10 +253,9 @@
 
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/27/2021/20210827/flutter%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%83%EF%BC%89/" class="post-title-link" itemprop="url">flutter学习系列（七）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          flutter学习系列（七）
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -319,7 +321,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="上拉加载的实现"><a href="#上拉加载的实现" class="headerlink" title="上拉加载的实现"></a>上拉加载的实现</h2><p>我们需要使用ScrollController部件来完成上拉加载功能</p>
+        <h2 id="上拉加载的实现"><a href="#上拉加载的实现" class="headerlink" title="上拉加载的实现"></a>上拉加载的实现</h2><p>我们需要使用ScrollController部件来完成上拉加载功能</p>
 <p>ScrollController部件必须在ListView部件中使用</p>
 <p>初始化：</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ScrollController scrollController = ScrollController();</span><br></pre></td></tr></table></figure>
@@ -349,30 +351,58 @@
 
 <h4 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_app/HotMovieData.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_app/HotMoviesItemWidget.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HotMoviesListWidget</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;Subject&gt; hotMovieData;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Function</span> onParentRefresh;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Function</span> _getData;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Function</span> setLoadingTrue;</span><br><span class="line">  <span class="built_in">bool</span> isLoading;</span><br><span class="line">  HotMoviesListWidget(<span class="keyword">this</span>.hotMovieData, <span class="keyword">this</span>.onParentRefresh, <span class="keyword">this</span>._getData, <span class="keyword">this</span>.isLoading, <span class="keyword">this</span>.setLoadingTrue);</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;StatefulWidget&gt; createState() &#123;</span><br><span class="line">    <span class="keyword">return</span> HotMoviesListWidgetState();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HotMoviesListWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">HotMoviesListWidget</span>&gt; </span>&#123;</span><br><span class="line">  ScrollController scrollController = ScrollController();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    <span class="keyword">this</span>.scrollController.addListener(() &#123;</span><br><span class="line">      <span class="comment">// 滑动到底部的关键判断</span></span><br><span class="line">      <span class="keyword">if</span> (!widget.isLoading &amp;&amp;</span><br><span class="line">          <span class="keyword">this</span>.scrollController.position.pixels &gt;= <span class="keyword">this</span>.scrollController.position.maxScrollExtent) &#123;</span><br><span class="line">        <span class="comment">// 开始加载数据</span></span><br><span class="line">        setState(() &#123;</span><br><span class="line">          widget.setLoadingTrue();</span><br><span class="line">          widget._getData();</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    <span class="comment">// 组件销毁时，释放资源（一定不能忘，否则可能会引起内存泄露）</span></span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">    <span class="keyword">this</span>.scrollController.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget renderBottom() &#123;</span><br><span class="line">    <span class="keyword">if</span> (widget.isLoading) &#123;</span><br><span class="line">      <span class="keyword">return</span> Container(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: <span class="number">15</span>),</span><br><span class="line">        child: Row(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(</span><br><span class="line">              <span class="string">&#x27;加载中&#x27;</span>,</span><br><span class="line">              style: TextStyle(</span><br><span class="line">                fontSize: <span class="number">15</span>,</span><br><span class="line">                color: Color(<span class="number">0xFF333333</span>),</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            Padding(padding: EdgeInsets.only(left: <span class="number">10</span>)),</span><br><span class="line">            SizedBox(</span><br><span class="line">              width: <span class="number">20</span>,</span><br><span class="line">              height: <span class="number">20</span>,</span><br><span class="line">              child: CircularProgressIndicator(strokeWidth: <span class="number">3</span>),</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> Container(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: <span class="number">15</span>),</span><br><span class="line">        alignment: Alignment.center,</span><br><span class="line">        child: Text(</span><br><span class="line">          <span class="string">&#x27;上拉加载更多&#x27;</span>,</span><br><span class="line">          style: TextStyle(</span><br><span class="line">            fontSize: <span class="number">15</span>,</span><br><span class="line">            color: Color(<span class="number">0xFF333333</span>),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MediaQuery.removePadding(</span><br><span class="line">      context: context,</span><br><span class="line">      removeTop: <span class="keyword">true</span>,</span><br><span class="line">      child: RefreshIndicator(</span><br><span class="line">          onRefresh: onRefresh,</span><br><span class="line">          child: ListView.separated(</span><br><span class="line">              controller: scrollController,</span><br><span class="line">              itemBuilder: (context, index) &#123;</span><br><span class="line">                <span class="keyword">if</span> (index &lt; widget.hotMovieData.length) &#123;</span><br><span class="line">                  <span class="keyword">return</span> HotMoviesItemWidget(widget.hotMovieData[index]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  <span class="keyword">return</span> <span class="keyword">this</span>.renderBottom();</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;,</span><br><span class="line">              separatorBuilder: (context, index) &#123;</span><br><span class="line">                <span class="keyword">return</span> Divider(</span><br><span class="line">                  height: <span class="number">1</span>,</span><br><span class="line">                  color: Colors.black26,</span><br><span class="line">                );</span><br><span class="line">              &#125;,</span><br><span class="line">              itemCount: widget.hotMovieData.length + <span class="number">1</span>)),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future onRefresh() &#123;</span><br><span class="line">    <span class="keyword">return</span> widget.onParentRefresh();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Liu YouXiang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://chuheji.github.io/2021/08/27/2021/20210827/flutter%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%83%EF%BC%89/" title="flutter学习系列（七）">http://chuheji.github.io/2021/08/27/2021/20210827/flutter学习系列（七）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/flutter/" rel="tag"><i class="fa fa-tag"></i> flutter</a>
+              <a href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" rel="tag"><i class="fa fa-tag"></i> 跨平台</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/06/2021/20210806/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8echarts%E5%AE%9E%E7%8E%B0%E5%8C%BA%E7%BA%A7%E5%9C%B0%E5%9B%BE/" rel="prev" title="如何使用echarts实现区级地图">
+      <i class="fa fa-chevron-left"></i> 如何使用echarts实现区级地图
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
 
         </div>
         
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
