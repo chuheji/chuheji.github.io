@@ -298,6 +298,27 @@
 
   
   <url>
+    <loc>http://chuheji.github.io/tags/NodeJS/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/vue/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://chuheji.github.io/tags/JavaScript/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
@@ -313,13 +334,6 @@
   
   <url>
     <loc>http://chuheji.github.io/tags/element/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/vue/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -348,6 +362,13 @@
   
   <url>
     <loc>http://chuheji.github.io/tags/jQuery/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/http/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -396,21 +417,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/NodeJS/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/http/</loc>
+    <loc>http://chuheji.github.io/tags/es6/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -438,7 +445,14 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/es6/</loc>
+    <loc>http://chuheji.github.io/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/tags/echarts/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -460,13 +474,6 @@
   
   <url>
     <loc>http://chuheji.github.io/tags/node/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/echarts/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -500,14 +507,14 @@
     <priority>0.6</priority>
   </url>
   
+
+  
   <url>
-    <loc>http://chuheji.github.io/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>http://chuheji.github.io/categories/NodeJS/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
-  
-
   
   <url>
     <loc>http://chuheji.github.io/categories/JavaScript/</loc>
@@ -539,6 +546,13 @@
   
   <url>
     <loc>http://chuheji.github.io/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chuheji.github.io/categories/http/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -580,14 +594,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/categories/NodeJS/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/http/</loc>
+    <loc>http://chuheji.github.io/categories/promise/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -608,7 +615,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/categories/promise/</loc>
+    <loc>http://chuheji.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -637,13 +644,6 @@
   
   <url>
     <loc>http://chuheji.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
