@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-middle.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-small.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chuheji.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="前言之前有用过公司大佬搭建的jenkins服务来进行自动化部署，用起来还是挺方便的，今天自己动手搭一个试试 运行环境系统使用了ubantu，之前试了下centos感觉不太好用，而且因为centos要停止维护，就重装了ubantu来用，apt确实比yum好用点。。 unbantu遇到的问题记录login incorrect这个字面意思应该就是用户名&#x2F;密码有误，但是我明明没有输错。。最后改了密码把大写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="试试Jenkins">
+<meta property="og:url" content="http://chuheji.github.io/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/index.html">
+<meta property="og:site_name" content="刘佑祥">
+<meta property="og:description" content="前言之前有用过公司大佬搭建的jenkins服务来进行自动化部署，用起来还是挺方便的，今天自己动手搭一个试试 运行环境系统使用了ubantu，之前试了下centos感觉不太好用，而且因为centos要停止维护，就重装了ubantu来用，apt确实比yum好用点。。 unbantu遇到的问题记录login incorrect这个字面意思应该就是用户名&#x2F;密码有误，但是我明明没有输错。。最后改了密码把大写">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-02T07:11:23.000Z">
+<meta property="article:modified_time" content="2022-08-04T01:58:42.397Z">
+<meta property="article:author" content="Liu YouXiang">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://chuheji.github.io/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>试试Jenkins | 刘佑祥</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">刘佑祥</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"><前端工程师 /></p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unbantu%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">unbantu遇到的问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#login-incorrect"><span class="nav-number">3.1.</span> <span class="nav-text">login incorrect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-repository-https-pkg-jenkins-io-Debian-binary-Release-does-not-have-a-Release-file"><span class="nav-number">3.2.</span> <span class="nav-text">The repository https pkg jenkins io Debian binary Release does not have a Release file</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">问题</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liu YouXiang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Liu YouXiang</p>
+  <div class="site-description" itemprop="description">博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu YouXiang">
+      <meta itemprop="description" content="博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘佑祥">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          试试Jenkins
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-02 15:11:23" itemprop="dateCreated datePublished" datetime="2022-08-02T15:11:23+08:00">2022-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-04 09:58:42" itemprop="dateModified" datetime="2022-08-04T09:58:42+08:00">2022-08-04</time>
+              </span>
+
+          
+            <span id="/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/" class="post-meta-item leancloud_visitors" data-flag-title="试试Jenkins" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前有用过公司大佬搭建的jenkins服务来进行自动化部署，用起来还是挺方便的，今天自己动手搭一个试试</p>
+<h1 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h1><p>系统使用了ubantu，之前试了下centos感觉不太好用，而且因为centos要停止维护，就重装了ubantu来用，apt确实比yum好用点。。</p>
+<h1 id="unbantu遇到的问题记录"><a href="#unbantu遇到的问题记录" class="headerlink" title="unbantu遇到的问题记录"></a>unbantu遇到的问题记录</h1><h2 id="login-incorrect"><a href="#login-incorrect" class="headerlink" title="login incorrect"></a>login incorrect</h2><p>这个字面意思应该就是用户名/密码有误，但是我明明没有输错。。最后改了密码把大写字母全换成小写得以解决</p>
+<h2 id="The-repository-https-pkg-jenkins-io-Debian-binary-Release-does-not-have-a-Release-file"><a href="#The-repository-https-pkg-jenkins-io-Debian-binary-Release-does-not-have-a-Release-file" class="headerlink" title="The repository https pkg jenkins io Debian binary Release does not have a Release file"></a>The repository https pkg jenkins io Debian binary Release does not have a Release file</h2><p>安装jenkins时碰到的问题，上stack overflow查了下，是ubuntu系统版本导致的问题，解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt get install jenkins -y</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul>
+<li><p>搭建并启动ssh远程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo &#x2F;etc&#x2F;init.d&#x2F;ssh start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装jdk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openjdk-11-jdk</span><br></pre></td></tr></table></figure>
+<p>配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 打开 &#x2F;etc&#x2F;environment文件</span><br><span class="line">sudo vim &#x2F;etc&#x2F;environment</span><br></pre></td></tr></table></figure>
+<p>写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># &#x2F;etc&#x2F;environment</span><br><span class="line">JAVA_HOME&#x3D;&quot;&#x2F;user&#x2F;lib&#x2F;jvm&#x2F;java-11-openjdk-amd64&quot;</span><br></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;etc&#x2F;environment</span><br></pre></td></tr></table></figure></li>
+<li><p>使用wget导入jenkins存储库密钥GPG</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https:&#x2F;&#x2F;pkg.jenkins.io&#x2F;debian&#x2F;jenkins.io.key | sudo apt-key add -</span><br></pre></td></tr></table></figure></li>
+<li><p>将jenkins存储库添加到系统中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#39;echo deb http:&#x2F;&#x2F;pkg.jenkins.io&#x2F;debian-stable binary&#x2F; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jenkins.list&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>更新软件包并安装最新的jenkins</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install jenkins</span><br></pre></td></tr></table></figure>
+<p>通过输入sudo systemctl status jenkins可以查看Jenkins的运行状态，如果出现以下内容，则表示安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">● jenkins.service - LSB: Start Jenkins at boot time</span><br><span class="line">Loaded: loaded (&#x2F;etc&#x2F;init.d&#x2F;jenkins; generated)</span><br><span class="line">Active: active (exited) since Wed 2020-08-03 14:03:08 PDT; 2min 16s ago</span><br><span class="line">    Docs: man:systemd-sysv-generator(8)</span><br><span class="line">    Tasks: 0 (limit: 2319)</span><br><span class="line">CGroup: &#x2F;system.slice&#x2F;jenkins.service</span><br></pre></td></tr></table></figure>
+<p>通过浏览器打开<a target="_blank" rel="noopener" href="http://ip+8080端口,可以通过修改/etc/default/jenkins%E6%96%87%E4%BB%B6%E6%9B%B4%E6%8D%A2%E7%AB%AF%E5%8F%A3">http://ip+8080端口，可以通过修改/etc/default/jenkins文件更换端口</a>, 例如将HTTP_PORT=8080更换为 HTTP_PORT=8081</p>
+</li>
+</ul>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>安装并启动Jenkins服务后并没有如预期般可以访问ip+端口进入页面，排查：</p>
+<ol>
+<li>查看Jenkins服务是否已经启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status jenkins</span><br></pre></td></tr></table></figure></li>
+<li>查看防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
+inactive为关闭，active为开启</li>
+</ol>
+<ul>
+<li><p>关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow disable</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>允许bufen端口地址访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 8081</span><br><span class="line">sudo ufw allow 22</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li>查看服务器是否有防火墙</li>
+</ol>
+<p>我用的ucloud服务器是有防火墙的，其他服务器应该也有，需要配置一下防火墙规则</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Liu YouXiang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://chuheji.github.io/2022/08/02/2022/20220802/%E8%AF%95%E8%AF%95Jenkins/" title="试试Jenkins">http://chuheji.github.io/2022/08/02/2022/20220802/试试Jenkins/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/16/2022/20220614/flutter%E4%BB%BF%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="flutter仿网易云音乐播放器（一）">
+      <i class="fa fa-chevron-left"></i> flutter仿网易云音乐播放器（一）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu YouXiang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">166k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:31</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"lyFGHnWGG5lrEgs3Eu9yrUxE-gzGzoHsz","appKey":"J99J7sKxplVW3qx5bLRm2jF3","placeholder":"欢迎留言","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"language":"zh-cn","visitor":true,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
