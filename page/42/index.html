@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/08/24/2020/20200824/react-weui%E9%87%8D%E6%9E%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2020/08/27/2020/20200827/es%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/24/2020/20200824/react-weui%E9%87%8D%E6%9E%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">react-weui重构主要问题汇总</a>
+            <a href="/2020/08/27/2020/20200827/es%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">es的一些新特性</a>
         </h2>
 
         <div class="post-meta">
@@ -233,14 +233,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-24 16:05:08" itemprop="dateCreated datePublished" datetime="2020-08-24T16:05:08+08:00">2020-08-24</time>
+              <time title="创建时间：2020-08-27 12:14:08" itemprop="dateCreated datePublished" datetime="2020-08-27T12:14:08+08:00">2020-08-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-30 17:46:42" itemprop="dateModified" datetime="2020-09-30T17:46:42+08:00">2020-09-30</time>
+                <time title="修改时间：2020-09-30 17:47:21" itemprop="dateModified" datetime="2020-09-30T17:47:21+08:00">2020-09-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                  <a href="/categories/es/" itemprop="url" rel="index"><span itemprop="name">es</span></a>
                 </span>
             </span>
 
@@ -258,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.7k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -275,61 +275,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Picker"><a href="#Picker" class="headerlink" title="Picker"></a>Picker</h2><ol>
-<li><p>不能将类型“(e: TouchEvent) =&gt; void”分配给类型“(event: TouchEvent) =&gt; void”。<br>参数“e”和“event” 的类型不兼容。<br>类型“TouchEvent”缺少类型“TouchEvent”的以下属性: which, cancelBubble, composed, returnValue 及其他 8 项。<br>解决： handleTouchStart和handleTouchMove的参数e的类型设置为React.TouchEvent</p>
-</li>
-<li><p>类型“Element | Text”上不存在属性“clientWidth”。   类型“Text”上不存在属性“clientWidth”<br>解决：将此类型断言为HTMLDivElement类型</p>
-</li>
-<li><p>如何在接口中声明数组的最大长度<br>解决：没有直接限制的方式，只能使用元组，但是在此处由于数组不是固定长度不适合使用元组</p>
-</li>
-<li><p>元素隐式具有 “any” 类型，因为类型为 “string” 的表达式不能用于索引类型 “Data”。<br>在类型 “Data” 上找不到具有类型为 “string” 的参数的索引签名<br>解决：上面方法的数组参数类型设为Array</p>
-</li>
-<li><p>[Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive. See <URL><br>报错原因：google浏览器为了最快速的相应touch事件，做出的改变。<br>解决：为需要preventDefault的容器加入css属性touch-action: none代替</p>
-</li>
-<li><p>picker滑动时会触发下拉刷新<br>解决：e.stopPropagation</p>
-</li>
-<li><p>cityPicker报错，联动失效<br>解决：cityPicker中updateGroup方法缺少参数，之前重构时由于此方法中看起来没有用到这几个参数，就给删除了，加入这几个参数并log出来就可以了，然后在这个方法中有一个picker.setState()方法导致报错，将其改为this.setState()即可</p>
-</li>
-</ol>
-<h2 id="Msg"><a href="#Msg" class="headerlink" title="Msg"></a>Msg</h2><ol>
-<li><p>不能将类型“{ children: string | undefined; href: string | undefined; }”分配给类型“IntrinsicAttributes &amp; FooterLinkProps”。<br>类型“IntrinsicAttributes &amp; FooterLinkProps”上不存在属性“href”<br>解决：在FooterLink组件中加入href属性</p>
-</li>
-<li><p>导入声明与“Button”的局部声明冲突<br>解决：接口名称Button与导入名称Button冲突，修改接口名称即可</p>
-</li>
-</ol>
-<h2 id="Uploader"><a href="#Uploader" class="headerlink" title="Uploader"></a>Uploader</h2><ol>
-<li><p>类型“Element | Text”上不存在属性“value”。<br>类型“Element”上不存在属性“value”。uploader对象可能为 “null”<br>解决: 将this.refs.uploader断言为HTMLInputElement类型</p>
-</li>
-<li><p>不能将类型“(_img: CanvasImageSource, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number) =&gt; number”分配给类型“{ (image: CanvasImageSource, dx: number, dy: number): void; (image: CanvasImageSource, dx: number, dy: number, dw: number, dh: number): void; (image: CanvasImageSource, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void; }”<br>解决: 前面一些类型写的太过杂乱且类型不明确，<br>原类型：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">handleFile(file: Blob, cb: &#123;</span><br><span class="line">  (file: <span class="built_in">any</span>, e: <span class="built_in">any</span>): <span class="built_in">void</span>;</span><br><span class="line">  (arg0: &#123;</span><br><span class="line">    nativeFile: <span class="built_in">any</span>;</span><br><span class="line">    lastModified: <span class="built_in">any</span>;</span><br><span class="line">    lastModifiedDate: <span class="built_in">any</span>;</span><br><span class="line">    name: <span class="built_in">any</span>;</span><br><span class="line">    size: <span class="built_in">any</span>;</span><br><span class="line">    <span class="keyword">type</span>: <span class="built_in">any</span>;</span><br><span class="line">    data: <span class="built_in">string</span>;</span><br><span class="line">  &#125;, arg1: ProgressEvent): <span class="built_in">void</span>;</span><br><span class="line">&#125;): <span class="built_in">void</span>;</span><br><span class="line">handleChange(e: &#123;</span><br><span class="line">  target: &#123;</span><br><span class="line">    files: <span class="built_in">any</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;): <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
-<p>更改为：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> customFile = &#123;</span><br><span class="line">  nativeFile: Blob;</span><br><span class="line">  lastModified: <span class="built_in">number</span>;</span><br><span class="line">  lastModifiedDate: <span class="built_in">Date</span>;</span><br><span class="line">  data: <span class="built_in">string</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  size: <span class="built_in">number</span>;</span><br><span class="line">  <span class="keyword">type</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> handleFileCallback = <span class="function">(<span class="params">file: customFile | Blob, e: renderOnloadEvent</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> renderOnloadEvent = &#123;</span><br><span class="line">  target: &#123;</span><br><span class="line">    result: <span class="built_in">any</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">handleFile(file: Blob, cb: handleFileCallback): <span class="built_in">void</span>;</span><br><span class="line">handleChange(e: React.ChangeEvent): <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如何将视频的预览图点击后播放视频<br>解决：props中新添加一个方法currentVideo,参数为如果上传视频成功后视频的src，可以将此src存入state中，每次点击预览图后根据id索引播放对应视频</p>
-</li>
-<li><p>怎么将背景图片颜色变深<br>解决：css的filter:brightness(70%)属性可以调整</p>
-</li>
-<li><p>如何获取视频首帧封面图<br>解决：动态创建video标签，给它添加以下属性：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">video.src = e.target.result;</span><br><span class="line">video.width = xx</span><br><span class="line">video.height = xx</span><br><span class="line">video.controls = <span class="literal">true</span></span><br><span class="line">video.muted = <span class="literal">true</span></span><br><span class="line">video.autoplay = <span class="literal">true</span></span><br><span class="line">video.preload = <span class="string">&#x27;preload&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>然后在loadeddata事件中使用canvas绘图,通过toDataURL方法即可得到图片</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">video.addEventListener(<span class="string">&#x27;loadeddata&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (ctx) &#123;</span><br><span class="line">    canvas.width = <span class="built_in">this</span>.videoWidth</span><br><span class="line">    canvas.height = <span class="built_in">this</span>.videoHeight</span><br><span class="line">    ctx.drawImage(<span class="built_in">this</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">600</span>, <span class="number">600</span>);</span><br><span class="line">    <span class="keyword">let</span> base64 = canvas.toDataURL(<span class="string">&#x27;image/png&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上传图片和视频返回结果是没有数据的<br>解决：文件上传类型是Blob类型，uploader组件将文件重新定义为自定义类型，其中包括一个nativeFile属性，它的值是最原始的文件，在上传时上传file.nativeFile即可（文件上传为空时，一定是文件类型或者是文件本身有问题）</p>
-</li>
-</ol>
-<h2 id="Gallery"><a href="#Gallery" class="headerlink" title="Gallery"></a>Gallery</h2><ol>
-<li>gallery不支持视频，uploader需要点击预览视频<br>解决：最初想要动态创建video标签，然后通过dom操作插入到gallery里面，这样虽然可以，但是复用性太差，考虑到这种类型的组件非常多，所以将gallery支持视频封装为基础组件，首先在gallery组件暴露一个属性isVideo，值为true时执行renderVideos方法渲染出视频<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">renderVideos(videos: <span class="built_in">any</span>[]) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">&quot;weui-gallery__img&quot;</span>&gt;</span><br><span class="line">      &lt;Swiper</span><br><span class="line">        indicators=&#123;<span class="literal">false</span>&#125;</span><br><span class="line">        defaultIndex=&#123;<span class="built_in">this</span>.props.defaultIndex&#125;</span><br><span class="line">        onChange=&#123;<span class="function">(<span class="params">next: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">this</span>.setState(&#123; currentIndex: next &#125;)&#125;</span><br><span class="line">        &gt;</span><br><span class="line">        &#123;</span><br><span class="line">          videos.map(<span class="function">(<span class="params">video: <span class="built_in">any</span>, i: <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="literal">undefined</span></span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">              &lt;video src=&#123;video&#125; key=&#123;i&#125; muted autoPlay loop&gt;&lt;/video&gt;</span><br><span class="line">            );</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/Swiper&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id=""><a href="#" class="headerlink" title="!!"></a>!!</h2><p>双感叹号操作符还是比较常用的用来判断一个值是否为undefined null或空值(不能判断数组和对象是否为空)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!! <span class="literal">undefined</span> <span class="comment">// false</span></span><br><span class="line">!! <span class="literal">null</span>      <span class="comment">// false</span></span><br><span class="line">!! <span class="string">&#x27;&#x27;</span>        <span class="comment">// false</span></span><br><span class="line">!! []        <span class="comment">// true</span></span><br><span class="line">!! &#123;&#125;        <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<h2 id="打包报错"><a href="#打包报错" class="headerlink" title="打包报错"></a>打包报错</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/576084/1595387806708-e101af2d-5989-4e01-a41a-ff8bf9e73eb4.png" alt="报错日志"><br>解决：在package.json中加入：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;Browserslist&quot;: [</span><br><span class="line">  &quot;last 3 version&quot;,</span><br><span class="line">  &quot;ie &gt;= 10&quot;,</span><br><span class="line">  &quot;iOS &gt;= 7&quot;,</span><br><span class="line">  <span class="string">&quot;Android &gt;= 4.1&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>将build.js中的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">postcss(&#123;</span><br><span class="line">  minimize: atrs.env === <span class="string">&#x27;production&#x27;</span>,</span><br><span class="line">  extensions: [<span class="string">&#x27;css&#x27;</span>, <span class="string">&#x27;less&#x27;</span>],</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">&#x27;autoprefixer&#x27;</span>)(&#123;</span><br><span class="line">      overrideBrowserslist: [<span class="string">&quot;iOS &gt;= 7&quot;</span>, <span class="string">&quot;Android &gt;= 4.1&quot;</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  extract: path.resolve(atrs.path + <span class="string">&#x27;react-weui.css&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>更改为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">postcss(&#123;</span><br><span class="line">  minimize: atrs.env === <span class="string">&#x27;production&#x27;</span>,</span><br><span class="line">  extensions: [<span class="string">&#x27;css&#x27;</span>, <span class="string">&#x27;less&#x27;</span>],</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">&#x27;autoprefixer&#x27;</span>)(&#123;</span><br><span class="line">      overrideBrowserslist: [</span><br><span class="line">        <span class="string">&quot;last 3 version&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ie &gt;= 10&quot;</span>,</span><br><span class="line">        <span class="string">&quot;iOS &gt;= 7&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Android &gt;= 4.1&quot;</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  extract: path.resolve(atrs.path + <span class="string">&#x27;react-weui.css&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="-1"><a href="#-1" class="headerlink" title="??"></a>??</h2><p>双问号操作符是一个逻辑运算符，当左侧数据为null或undefined时，返回右侧操作数，否则返回左侧操作数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> ?? <span class="string">&#x27;any&#x27;</span>  <span class="comment">// any</span></span><br><span class="line">undifined ?? <span class="number">0</span> <span class="comment">// 0</span></span><br><span class="line"><span class="number">0</span> ?? <span class="number">1</span>         <span class="comment">// 0</span></span><br><span class="line"><span class="literal">false</span> ?? <span class="number">0</span>     <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a target="_blank" rel="noopener" href="https://github.com/lukou-frontend/react-weui-ts">react-weui-ts</a></p>
+<h2 id="-2"><a href="#-2" class="headerlink" title="?."></a>?.</h2><p>当路径不存在时使用都会报错，此时可以使用?.操作符使值的路径的任意部分变为可选的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = []</span><br><span class="line">person?.name ?? <span class="string">&#x27;any&#x27;</span>      <span class="comment">// any</span></span><br><span class="line">person?.job?.place ?? <span class="string">&#x27;any&#x27;</span> <span class="comment">//any</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Intl-ListFormat"><a href="#Intl-ListFormat" class="headerlink" title="Intl.ListFormat"></a>Intl.ListFormat</h2><p>可以选择语言返回不同格式的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="string">&#x27;Apple&#x27;</span>, <span class="string">&#x27;Orange&#x27;</span>, <span class="string">&#x27;Banana&#x27;</span>]</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Intl</span>.ListFormat(<span class="string">&#x27;en-GB&#x27;</span>, &#123; <span class="attr">style</span>: <span class="string">&#x27;long&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;conjunction&#x27;</span> &#125;).format(list)  <span class="comment">// &quot;Apple, Orange and Banana&quot;</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Intl</span>.ListFormat(<span class="string">&#x27;zh-cn&#x27;</span>, &#123; <span class="attr">style</span>: <span class="string">&#x27;short&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;conjunction&#x27;</span> &#125;).format(list) <span class="comment">// &quot;Apple、Orange和Banana&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-any"><a href="#Promise-any" class="headerlink" title="Promise.any"></a>Promise.any</h2><p>使用多个promise时，只要有一个Promise完成（不管成功还是失败）就会返回这个Promise的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.any(promises).then(</span><br><span class="line">  (first) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 任何一个 Promise 完成了</span></span><br><span class="line">  &#125;,</span><br><span class="line">  (error) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 所有 Promise 都拒绝了</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-allSettled"><a href="#Promise-allSettled" class="headerlink" title="Promise.allSettled"></a>Promise.allSettled</h2><p>使用多个promise时，只有全部Promise都完成才返回结果（一个包含每个Promise执行结果的数组）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.allSettled(promises).then(</span><br><span class="line">  (all) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 所有 Promise 完成了</span></span><br><span class="line">  &#125;,</span><br><span class="line">  (error) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 有 Promise 拒绝了</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dynamic-Import"><a href="#Dynamic-Import" class="headerlink" title="Dynamic Import"></a>Dynamic Import</h2><p>如果你有一个工具库，其中的一些函数可能很少使用，将它完整导入是一件很浪费资源的是，现在我们可以用async/await来动态导入我们需要的依赖项</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 工具库 utils.js</span></span><br><span class="line"><span class="keyword">const</span> Add = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123;Add&#125;</span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> doSth = <span class="keyword">async</span> (num1, num2) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!!num1 &amp;&amp; !!num2) &#123;</span><br><span class="line">    <span class="keyword">const</span> math = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">&#x27;utils.js&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> math.add(num1, num2)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line">doSth(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="类的私有变量"><a href="#类的私有变量" class="headerlink" title="类的私有变量"></a>类的私有变量</h2><p>使用#关键词将一个类内部的属性变为私有属性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 定义一个私有变量</span></span><br><span class="line">  #name = &quot;zs&quot;</span><br><span class="line"></span><br><span class="line">  greet() &#123; console.log(this.#name) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> greeting = <span class="keyword">new</span> Person()</span><br><span class="line"><span class="comment">// 通过实例方法调用访问</span></span><br><span class="line">greeting.greet() <span class="comment">// zs</span></span><br><span class="line"><span class="comment">// 直接访问类变量</span></span><br><span class="line">console.log(greeting.#message) // Private name #message is not defined</span><br></pre></td></tr></table></figure>
+
+<h2 id="BigInt"><a href="#BigInt" class="headerlink" title="BigInt"></a>BigInt</h2><p>新的数据类型，不能与number混用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">2n</span> ** <span class="number">53n</span> <span class="comment">// 9007199254740992n</span></span><br><span class="line"><span class="keyword">const</span> y = x + <span class="number">1n</span>    <span class="comment">// 9007199254740993n</span></span><br></pre></td></tr></table></figure>
+<h2 id="数字分隔符"><a href="#数字分隔符" class="headerlink" title="数字分隔符"></a>数字分隔符</h2><p>用_表示数字分割符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">2</span>_3333_3333 <span class="comment">// x = 233333333</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -348,7 +321,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/41/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/43/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/41/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/43/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -390,7 +363,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -399,12 +372,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">176k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:40</span>
+    <span title="站点阅读时长">2:44</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>

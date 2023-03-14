@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/10/13/2021/20211013/vue3%E4%B8%ADEventBus%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/12/14/2021/20211214/%E5%86%99%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%B8%8A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/13/2021/20211013/vue3%E4%B8%ADEventBus%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">vue3中EventBus的使用</a>
+            <a href="/2021/12/14/2021/20211214/%E5%86%99%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%B8%8A/" class="post-title-link" itemprop="url">写个简单的脚手架并发布到npm上</a>
         </h2>
 
         <div class="post-meta">
@@ -234,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-13 09:37:20 / 修改时间：10:00:01" itemprop="dateCreated datePublished" datetime="2021-10-13T09:37:20+08:00">2021-10-13</time>
+              <time title="创建时间：2021-12-14 16:41:27 / 修改时间：17:01:05" itemprop="dateCreated datePublished" datetime="2021-12-14T16:41:27+08:00">2021-12-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+                  <a href="/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">工程化</span></a>
                 </span>
             </span>
 
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -269,22 +269,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这段时间项目中使用了vue3，项目中需要用到同级组件传值，自然想到使用EventBus，使用了vue2的老方法做发现报错，查阅后得知vue2的EventBus在vue3中不能适用了，所以需要自定义</p>
-<h2 id="写一个简单的订阅-发布的类"><a href="#写一个简单的订阅-发布的类" class="headerlink" title="写一个简单的订阅/发布的类"></a>写一个简单的订阅/发布的类</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">EventBus</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">this</span>.events = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  emit (eventName, data) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.events[eventName]) &#123;</span><br><span class="line">      <span class="built_in">this</span>.events[eventName].forEach(<span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        fn(data);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  on (eventName, fn) &#123;</span><br><span class="line">    <span class="built_in">this</span>.events[eventName] = <span class="built_in">this</span>.events[eventName] || [];</span><br><span class="line">    <span class="built_in">this</span>.events[eventName].push(fn);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  off (eventName, fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.events[eventName]) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.events[eventName].length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.events[eventName][i] === fn) &#123;</span><br><span class="line">          <span class="built_in">this</span>.events[eventName].splice(i, <span class="number">1</span>);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>每次新起一个项目都要从原来旧的项目拷贝一份（虽然也不是很麻烦，git clone也可以），所以简单搞个脚手架免去重复工作</p>
+<h1 id="可能需要的依赖包"><a href="#可能需要的依赖包" class="headerlink" title="可能需要的依赖包"></a>可能需要的依赖包</h1><ul>
+<li>commander: 命令行工具</li>
+<li>download-git-repo: 用来下载远程模板</li>
+<li>ini: 格式转换</li>
+<li>inquirer: 交互式命令行工具</li>
+<li>ora: 显示loading动画</li>
+<li>chalk: 修改控制台输出内容样式</li>
+<li>log-symbols: 显示出 √ 或 × 等的图标</li>
+<li>shelljs: 编写shell脚本</li>
+</ul>
+<p>本文用到的库：<br>chalk ora inquirer shell</p>
+<h1 id="编写过程"><a href="#编写过程" class="headerlink" title="编写过程"></a>编写过程</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ol>
+<li><p>创建文件夹</p>
+</li>
+<li><p>cd 文件夹 &amp; npm init生成package.json文件</p>
+</li>
+<li><p>修改package.json的main入口文件。。。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;enjoy-vue-cli&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.1&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;vue3脚手架&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;cli.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;bin&quot;</span>: <span class="string">&quot;cli.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;module&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;刘佑祥&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;axios&quot;</span>: <span class="string">&quot;^0.24.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;chalk&quot;</span>: <span class="string">&quot;^5.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;commander&quot;</span>: <span class="string">&quot;^8.3.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;consolidate&quot;</span>: <span class="string">&quot;^0.16.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;download-git-repo&quot;</span>: <span class="string">&quot;^3.0.2&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ejs&quot;</span>: <span class="string">&quot;^3.1.6&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;inquirer&quot;</span>: <span class="string">&quot;^8.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;metalsmith&quot;</span>: <span class="string">&quot;^2.3.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ncp&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ora&quot;</span>: <span class="string">&quot;^6.0.1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;shelljs&quot;</span>: <span class="string">&quot;^0.8.4&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建cli.js文件</p>
+</li>
+</ol>
+<h2 id="脚手架内容"><a href="#脚手架内容" class="headerlink" title="脚手架内容"></a>脚手架内容</h2><p>涉及到的几个库语法都挺简单的，看看文档就基本会用了，不多说这个，<br>在文件第一行要加上<code>#!/usr/bin/env node</code>代码，指定当前脚本由node.js进行解析<br>开发过程中为了方便调试，可以在当前的目录下执行 npm link，将enjoy-vue-cli命令链接到全局环境。</p>
+<p>以下是完整代码：</p>
+<p>就是获取到一个项目名称和根据是否使用ts从gitlab上clone两个不同的项目（=_=），也可以使用<code>download-git-repo</code>库从github上拉模板</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> chalk <span class="keyword">from</span> <span class="string">&#x27;chalk&#x27;</span></span><br><span class="line"><span class="keyword">import</span> ora <span class="keyword">from</span> <span class="string">&#x27;ora&#x27;</span></span><br><span class="line"><span class="keyword">import</span> download <span class="keyword">from</span> <span class="string">&#x27;download-git-repo&#x27;</span></span><br><span class="line"><span class="keyword">import</span> inquirer <span class="keyword">from</span> <span class="string">&#x27;inquirer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> shell <span class="keyword">from</span> <span class="string">&quot;shelljs&quot;</span></span><br><span class="line"></span><br><span class="line">inquirer.prompt([</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&#x27;input&#x27;</span>, <span class="comment">//type： input, number, confirm, list, checkbox ... </span></span><br><span class="line">    name: <span class="string">&#x27;name&#x27;</span>, <span class="comment">// key 名</span></span><br><span class="line">    message: <span class="string">&#x27;项目名称&#x27;</span>, <span class="comment">// 提示信息</span></span><br><span class="line">    <span class="keyword">default</span>: <span class="string">&#x27;vue3-project&#x27;</span> <span class="comment">// 默认值</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&#x27;confirm&#x27;</span>, <span class="comment">//type： input, number, confirm, list, checkbox ... </span></span><br><span class="line">    name: <span class="string">&#x27;typescript&#x27;</span>, <span class="comment">// key 名</span></span><br><span class="line">    message: <span class="string">&#x27;是否使用typescript&#x27;</span>, <span class="comment">// 提示信息</span></span><br><span class="line">  &#125;,</span><br><span class="line">]).then(<span class="function"><span class="params">answers</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;http://192.168.9.25:9999/liuyx/vue3-base&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(chalk.white(<span class="string">&#x27;\n Start generating... \n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> command</span><br><span class="line">  <span class="keyword">if</span> (answers.typescript) &#123;</span><br><span class="line">    command = <span class="string">`git clone http://192.168.9.25:9999/liuyx/vue3-ts-base <span class="subst">$&#123;answers.name&#125;</span>`</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    command = <span class="string">`git clone http://192.168.9.25:9999/liuyx/vue3-base <span class="subst">$&#123;answers.name&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 出现加载图标</span></span><br><span class="line">  <span class="keyword">const</span> spinner = ora(<span class="string">&quot;Downloading...&quot;</span>);</span><br><span class="line">  spinner.start();</span><br><span class="line">  <span class="comment">// 执行下载方法并传入参数</span></span><br><span class="line">  shell.exec(command)</span><br><span class="line">  <span class="built_in">console</span>.log(chalk.green(<span class="string">&#x27;\n Generation completed!&#x27;</span>))</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;\n To get started&#x27;</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`\n    cd <span class="subst">$&#123;answers.name&#125;</span>`</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`\n    yarn`</span>)</span><br><span class="line">  <span class="keyword">if</span> (answers.typescript) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`\n    yarn dev`</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`\n    yarn serve`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  spinner.succeed();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
-<li>在入口文件中引入EventBus执行挂载</li>
+<h1 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h1><ol>
+<li>注册npm账号并验证邮箱</li>
+<li>执行<code>npm login</code>命令登录</li>
+<li>执行<code>npm publish</code>命令发布包</li>
 </ol>
-<p>在main.js中挂载EventBus：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> EventBus <span class="keyword">from</span> <span class="string">&#x27;./bus.js&#x27;</span></span><br><span class="line"><span class="keyword">const</span> $bus = <span class="keyword">new</span> EventBus()</span><br><span class="line">app.config.globalProperties.$bus = $bus</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>发布事件</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  <span class="built_in">this</span>.$bus.emit(<span class="string">&#x27;xxx&#x27;</span>, data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>监听事件</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  <span class="built_in">this</span>.$bus.on(<span class="string">&#x27;xxx&#x27;</span>, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    ....</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我在发布的时候遇到一个403的问题是因为没有验证邮箱</p>
 
       
     </div>
@@ -303,7 +321,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -345,7 +363,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -354,12 +372,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">176k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:40</span>
+    <span title="站点阅读时长">2:44</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>

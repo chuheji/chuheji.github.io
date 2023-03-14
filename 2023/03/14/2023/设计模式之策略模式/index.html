@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chuheji.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="策略模式是什么策略模式的定义是：定义一系列算法，把它们一个个封装起来，并且使它们可以相互替换挺抽象，有点看不懂，那我们来看一组代码： 12345678910111213141516171819202122232425262728293031const orderType &#x3D; 1 &#x2F;&#x2F; 1: 美妆，2：电器，3：家具const orderWay &#x3D; 1 &#x2F;&#x2F; 1：h5，2：app，3：小程序cons">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之策略模式">
+<meta property="og:url" content="http://chuheji.github.io/2023/03/14/2023/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="刘佑祥">
+<meta property="og:description" content="策略模式是什么策略模式的定义是：定义一系列算法，把它们一个个封装起来，并且使它们可以相互替换挺抽象，有点看不懂，那我们来看一组代码： 12345678910111213141516171819202122232425262728293031const orderType &#x3D; 1 &#x2F;&#x2F; 1: 美妆，2：电器，3：家具const orderWay &#x3D; 1 &#x2F;&#x2F; 1：h5，2：app，3：小程序cons">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-14T02:25:30.000Z">
+<meta property="article:modified_time" content="2023-03-14T06:55:34.440Z">
+<meta property="article:author" content="Liu YouXiang">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://chuheji.github.io/2023/03/14/2023/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>设计模式之策略模式 | 刘佑祥</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">刘佑祥</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"><前端工程师 /></p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">策略模式是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">策略模式如何使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%BC%BA%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">策略模式缺点</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Liu YouXiang</p>
+  <div class="site-description" itemprop="description">博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2023/03/14/2023/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liu YouXiang">
+      <meta itemprop="description" content="博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘佑祥">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          设计模式之策略模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-14 10:25:30 / 修改时间：14:55:34" itemprop="dateCreated datePublished" datetime="2023-03-14T10:25:30+08:00">2023-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="策略模式是什么"><a href="#策略模式是什么" class="headerlink" title="策略模式是什么"></a>策略模式是什么</h1><p>策略模式的定义是：定义一系列算法，把它们一个个封装起来，并且使它们可以相互替换<br>挺抽象，有点看不懂，那我们来看一组代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> orderType = <span class="number">1</span> <span class="comment">// 1: 美妆，2：电器，3：家具</span></span><br><span class="line"><span class="keyword">const</span> orderWay = <span class="number">1</span> <span class="comment">// 1：h5，2：app，3：小程序</span></span><br><span class="line"><span class="keyword">const</span> orderMoney = <span class="number">100</span> <span class="comment">// 金额范围划分，0-100，100-1000，1000以上，跳转的订单详情也不相同</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (orderType === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (orderWay === <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span> &lt;= orderMoney &amp;&amp; orderMoney &lt; <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单h5-0&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderMoney &lt; <span class="number">1000</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单h5-100&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单h5-1000&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderWay === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span> &lt;= orderMoney &amp;&amp; orderMoney &lt; <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单app-0&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderMoney &lt; <span class="number">1000</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单app-100&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单app-1000&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderWay === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span> &lt;= orderMoney &amp;&amp; orderMoney &lt; <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单小程序-0&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderMoney &lt; <span class="number">1000</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单小程序-100&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单小程序-1000&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这代码看着就已经让人感到恶心了，非常难以维护，如果新增一些类型或者金额范围只能不停的往上堆if else，最后代码就成💩山了。<br>那策略模式其实就是解决这个问题的</p>
+<h1 id="策略模式如何使用"><a href="#策略模式如何使用" class="headerlink" title="策略模式如何使用"></a>策略模式如何使用</h1><p>以上文代码为例，我们可以观察到平台类型一般会是比较固定的，而金额范围是可能会一直改动的<br>所以我们将金额范围抽象成策略</p>
+<p>创建一个金额范围策略，这样在新增金额范围时只需要在这里维护即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moneyMap</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">    <span class="comment">// 0&lt;=金额&lt;=100金额类型为1</span></span><br><span class="line">    [[<span class="number">0</span>, <span class="number">100</span>], <span class="number">1</span>],</span><br><span class="line">    <span class="comment">// 101&lt;=金额&lt;=1000金额类型为2</span></span><br><span class="line">    [[<span class="number">101</span>, <span class="number">1000</span>], <span class="number">2</span>],</span><br><span class="line">    <span class="comment">// 金额&lt;=1001金额类型为3</span></span><br><span class="line">    [[<span class="number">1001</span>, <span class="number">1000000000000000</span>], <span class="number">3</span>]</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moneyStategy</span> (<span class="params">money</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...moneyMap()].filter(<span class="function">(<span class="params">[[moneyStart, moneyEnd]]</span>) =&gt;</span> money &gt;= moneyStart &amp;&amp; money &lt;= moneyEnd)[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个策略，在不同条件下执行不同方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stategy</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">    [</span><br><span class="line">      &#123;</span><br><span class="line">        orderType: <span class="number">1</span>,</span><br><span class="line">        orderWay: <span class="number">1</span>,</span><br><span class="line">        orderMoney: <span class="number">1</span></span><br><span class="line">      &#125;,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单h5 0-100&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &#123;</span><br><span class="line">        orderType: <span class="number">1</span>,</span><br><span class="line">        orderWay: <span class="number">1</span>,</span><br><span class="line">        orderMoney: <span class="number">2</span></span><br><span class="line">      &#125;,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单h5 100-1000&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &#123;</span><br><span class="line">        orderType: <span class="number">1</span>,</span><br><span class="line">        orderWay: <span class="number">1</span>,</span><br><span class="line">        orderMoney: <span class="number">3</span></span><br><span class="line">      &#125;,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;美妆订单h5 1000+&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span> (<span class="params">orderType, orderWay, orderMoney</span>) </span>&#123;</span><br><span class="line">  [...stategy()].filter(<span class="function">(<span class="params">[key]</span>) =&gt;</span> key.orderType === orderType &amp;&amp; key.orderWay === orderWay &amp;&amp; key.orderMoney === orderMoney)[<span class="number">0</span>][<span class="number">1</span>]()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">run(<span class="number">1</span>, <span class="number">1</span>, orderMoneyStrategy(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可以看出使用策略模式并不能减少代码量，甚至可能会增加代码量。但是这样的代码更符合开闭原则，更容易阅读和维护</p>
+<h1 id="策略模式缺点"><a href="#策略模式缺点" class="headerlink" title="策略模式缺点"></a>策略模式缺点</h1><p>策略模式可能会造成很多的策略类，所以我们需要结合实际情况抽象策略，不要过度抽象把问题复杂化</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/04/2022/20221104/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E6%9E%90xlsx%E6%96%87%E4%BB%B6/" rel="prev" title="前端如何解析xlsx文件">
+      <i class="fa fa-chevron-left"></i> 前端如何解析xlsx文件
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu YouXiang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">181k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:44</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
