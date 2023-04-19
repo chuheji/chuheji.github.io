@@ -438,6 +438,13 @@
   </url>
   
   <url>
+    <loc>http://chuheji.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://chuheji.github.io/tags/jQuery/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>daily</changefreq>
@@ -445,7 +452,7 @@
   </url>
   
   <url>
-    <loc>http://chuheji.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    <loc>http://chuheji.github.io/tags/http/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -460,13 +467,6 @@
   
   <url>
     <loc>http://chuheji.github.io/tags/antd/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/tags/http/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -678,6 +678,13 @@
   </url>
   
   <url>
+    <loc>http://chuheji.github.io/categories/http/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://chuheji.github.io/categories/es/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>daily</changefreq>
@@ -686,13 +693,6 @@
   
   <url>
     <loc>http://chuheji.github.io/categories/react/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chuheji.github.io/categories/http/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
