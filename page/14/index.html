@@ -160,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/12/14/2021/20211214/%E5%86%99%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%B8%8A/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/12/15/2021/20211215/%E6%95%B4%E4%B8%AA%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E8%84%9A%E6%89%8B%E6%9E%B6(%E4%B8%80)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/14/2021/20211214/%E5%86%99%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%B8%8A/" class="post-title-link" itemprop="url">写个简单的脚手架并发布到npm上</a>
+            <a href="/2021/12/15/2021/20211215/%E6%95%B4%E4%B8%AA%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E8%84%9A%E6%89%8B%E6%9E%B6(%E4%B8%80)/" class="post-title-link" itemprop="url">整个自动化部署脚手架(一)</a>
         </h2>
 
         <div class="post-meta">
@@ -232,10 +232,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-14 16:41:27 / 修改时间：17:01:05" itemprop="dateCreated datePublished" datetime="2021-12-14T16:41:27+08:00">2021-12-14</time>
+              <time title="创建时间：2021-12-15 10:03:33" itemprop="dateCreated datePublished" datetime="2021-12-15T10:03:33+08:00">2021-12-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-16 15:29:07" itemprop="dateModified" datetime="2021-12-16T15:29:07+08:00">2021-12-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -252,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -269,40 +275,54 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>每次新起一个项目都要从原来旧的项目拷贝一份（虽然也不是很麻烦，git clone也可以），所以简单搞个脚手架免去重复工作</p>
-<h1 id="可能需要的依赖包"><a href="#可能需要的依赖包" class="headerlink" title="可能需要的依赖包"></a>可能需要的依赖包</h1><ul>
-<li>commander: 命令行工具</li>
-<li>download-git-repo: 用来下载远程模板</li>
-<li>ini: 格式转换</li>
-<li>inquirer: 交互式命令行工具</li>
-<li>ora: 显示loading动画</li>
-<li>chalk: 修改控制台输出内容样式</li>
-<li>log-symbols: 显示出 √ 或 × 等的图标</li>
-<li>shelljs: 编写shell脚本</li>
-</ul>
-<p>本文用到的库：<br>chalk ora inquirer shell</p>
-<h1 id="编写过程"><a href="#编写过程" class="headerlink" title="编写过程"></a>编写过程</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ol>
-<li><p>创建文件夹</p>
-</li>
-<li><p>cd 文件夹 &amp; npm init生成package.json文件</p>
-</li>
-<li><p>修改package.json的main入口文件。。。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;enjoy-vue-cli&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.1&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;vue3脚手架&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;cli.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;bin&quot;</span>: <span class="string">&quot;cli.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;module&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;刘佑祥&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;axios&quot;</span>: <span class="string">&quot;^0.24.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;chalk&quot;</span>: <span class="string">&quot;^5.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;commander&quot;</span>: <span class="string">&quot;^8.3.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;consolidate&quot;</span>: <span class="string">&quot;^0.16.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;download-git-repo&quot;</span>: <span class="string">&quot;^3.0.2&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ejs&quot;</span>: <span class="string">&quot;^3.1.6&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;inquirer&quot;</span>: <span class="string">&quot;^8.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;metalsmith&quot;</span>: <span class="string">&quot;^2.3.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ncp&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ora&quot;</span>: <span class="string">&quot;^6.0.1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;shelljs&quot;</span>: <span class="string">&quot;^0.8.4&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建cli.js文件</p>
-</li>
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>每次需要部署的时候都需要先打包然后远程登录将打包的文件复制过去，非常麻烦，之前的公司都是用脚手架或者jenkins来做自动化部署，<br>现在的公司还没有，所以整个自动化部署的脚手架提交工作效率。</p>
+<p>先自己搞个服务器走下流程</p>
+<h1 id="云服务器"><a href="#云服务器" class="headerlink" title="云服务器"></a>云服务器</h1><p>在ucloud买了个最便宜的云服务器，选择Windows系统，第一个月才3块钱，太合适了</p>
+<h1 id="云服务器基本配置"><a href="#云服务器基本配置" class="headerlink" title="云服务器基本配置"></a>云服务器基本配置</h1><ol>
+<li>使用Microsoft Remote Desktop连接到服务器</li>
+<li>下载nginx和chrome/firefox</li>
+<li>启动nginx服务</li>
 </ol>
-<h2 id="脚手架内容"><a href="#脚手架内容" class="headerlink" title="脚手架内容"></a>脚手架内容</h2><p>涉及到的几个库语法都挺简单的，看看文档就基本会用了，不多说这个，<br>在文件第一行要加上<code>#!/usr/bin/env node</code>代码，指定当前脚本由node.js进行解析<br>开发过程中为了方便调试，可以在当前的目录下执行 npm link，将enjoy-vue-cli命令链接到全局环境。</p>
-<p>以下是完整代码：</p>
-<p>就是获取到一个项目名称和根据是否使用ts从gitlab上clone两个不同的项目（=_=），也可以使用<code>download-git-repo</code>库从github上拉模板</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> chalk <span class="keyword">from</span> <span class="string">&#x27;chalk&#x27;</span></span><br><span class="line"><span class="keyword">import</span> ora <span class="keyword">from</span> <span class="string">&#x27;ora&#x27;</span></span><br><span class="line"><span class="keyword">import</span> download <span class="keyword">from</span> <span class="string">&#x27;download-git-repo&#x27;</span></span><br><span class="line"><span class="keyword">import</span> inquirer <span class="keyword">from</span> <span class="string">&#x27;inquirer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> shell <span class="keyword">from</span> <span class="string">&quot;shelljs&quot;</span></span><br><span class="line"></span><br><span class="line">inquirer.prompt([</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&#x27;input&#x27;</span>, <span class="comment">//type： input, number, confirm, list, checkbox ... </span></span><br><span class="line">    name: <span class="string">&#x27;name&#x27;</span>, <span class="comment">// key 名</span></span><br><span class="line">    message: <span class="string">&#x27;项目名称&#x27;</span>, <span class="comment">// 提示信息</span></span><br><span class="line">    <span class="keyword">default</span>: <span class="string">&#x27;vue3-project&#x27;</span> <span class="comment">// 默认值</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&#x27;confirm&#x27;</span>, <span class="comment">//type： input, number, confirm, list, checkbox ... </span></span><br><span class="line">    name: <span class="string">&#x27;typescript&#x27;</span>, <span class="comment">// key 名</span></span><br><span class="line">    message: <span class="string">&#x27;是否使用typescript&#x27;</span>, <span class="comment">// 提示信息</span></span><br><span class="line">  &#125;,</span><br><span class="line">]).then(<span class="function"><span class="params">answers</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;http://192.168.9.25:9999/liuyx/vue3-base&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(chalk.white(<span class="string">&#x27;\n Start generating... \n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> command</span><br><span class="line">  <span class="keyword">if</span> (answers.typescript) &#123;</span><br><span class="line">    command = <span class="string">`git clone http://192.168.9.25:9999/liuyx/vue3-ts-base <span class="subst">$&#123;answers.name&#125;</span>`</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    command = <span class="string">`git clone http://192.168.9.25:9999/liuyx/vue3-base <span class="subst">$&#123;answers.name&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 出现加载图标</span></span><br><span class="line">  <span class="keyword">const</span> spinner = ora(<span class="string">&quot;Downloading...&quot;</span>);</span><br><span class="line">  spinner.start();</span><br><span class="line">  <span class="comment">// 执行下载方法并传入参数</span></span><br><span class="line">  shell.exec(command)</span><br><span class="line">  <span class="built_in">console</span>.log(chalk.green(<span class="string">&#x27;\n Generation completed!&#x27;</span>))</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;\n To get started&#x27;</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`\n    cd <span class="subst">$&#123;answers.name&#125;</span>`</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`\n    yarn`</span>)</span><br><span class="line">  <span class="keyword">if</span> (answers.typescript) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`\n    yarn dev`</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`\n    yarn serve`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  spinner.succeed();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>现在公网就可以访问到了</p>
+<h1 id="使用ssh登录"><a href="#使用ssh登录" class="headerlink" title="使用ssh登录"></a>使用ssh登录</h1><p>登录命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 用户名@主机名</span><br></pre></td></tr></table></figure>
 
-<h1 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h1><ol>
-<li>注册npm账号并验证邮箱</li>
-<li>执行<code>npm login</code>命令登录</li>
-<li>执行<code>npm publish</code>命令发布包</li>
+<p>报了个错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &#39;&lt;host&gt;&#39; can&#39;t be established.</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>是因为服务器没有安装OpenSSH的原因</p>
+<h2 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h2><ol>
+<li>用管理员身份启动 PowerShell，使用如下命令看一下，要确保 OpenSSH 可用于安装：</li>
 </ol>
-<p>我在发布的时候遇到一个403的问题是因为没有验证邮箱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-WindowsCapability -Online | ? Name -like &#39;OpenSSH*&#39;</span><br></pre></td></tr></table></figure>
+
+<p>输出:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Name  : OpenSSH.Client~~~~0.0.1.0</span><br><span class="line">State : NotPresent</span><br><span class="line">Name  : OpenSSH.Server~~~~0.0.1.0</span><br><span class="line">State : NotPresent</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用 PowerShell 安装服务器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Path          :</span><br><span class="line">Online        : True</span><br><span class="line">RestartNeeded : False</span><br></pre></td></tr></table></figure>
+<p>这样就完成了OpenSSH的安装</p>
+<ol start="3">
+<li>开启 SSHD 服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Start-Service sshd</span><br></pre></td></tr></table></figure></li>
+<li>设置服务自动启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Service -Name sshd -StartupType &#39;Automatic&#39;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>这样就能使用ssh登录了</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h2><p>使用ls命令时报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;ls&#39; 不是内部或外部命令，也不是可运行的程序 或批处理文件。</span><br></pre></td></tr></table></figure>
+
+<p>在C盘Windows目录下新建ls.bat文件输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">dir</span><br></pre></td></tr></table></figure>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p>使用vim命令时报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;vim&#39; 不是内部或外部命令，也不是可运行的程序 或批处理文件。</span><br></pre></td></tr></table></figure>
+
+<p>下载gvim即可</p>
+<h2 id="unzip下载"><a href="#unzip下载" class="headerlink" title="unzip下载"></a>unzip下载</h2><p>用来解压压缩包<br>地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;gnuwin32.sourceforge.net&#x2F;packages&#x2F;unzip.htm</span><br></pre></td></tr></table></figure>
+<p>需要将安装后的unzip.exe放到Windows目录下</p>
 
       
     </div>
@@ -321,7 +341,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -372,12 +392,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">181k</span>
+    <span title="站点总字数">185k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:45</span>
+    <span title="站点阅读时长">2:48</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
