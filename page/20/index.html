@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/10/13/2021/20211013/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%B6%E9%97%B4%EF%BC%88%E4%BB%8A%E5%A4%A9%E3%80%81%E6%98%A8%E5%A4%A9%E3%80%81%E6%98%8E%E5%A4%A9-%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/10/13/2021/20211013/vue3%E4%B8%ADEventBus%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/13/2021/20211013/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%B6%E9%97%B4%EF%BC%88%E4%BB%8A%E5%A4%A9%E3%80%81%E6%98%A8%E5%A4%A9%E3%80%81%E6%98%8E%E5%A4%A9-%EF%BC%89/" class="post-title-link" itemprop="url">一行代码获取格式化时间（今天、昨天、明天...）</a>
+            <a href="/2021/10/13/2021/20211013/vue3%E4%B8%ADEventBus%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">vue3中EventBus的使用</a>
         </h2>
 
         <div class="post-meta">
@@ -234,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-13 09:17:54 / 修改时间：10:00:38" itemprop="dateCreated datePublished" datetime="2021-10-13T09:17:54+08:00">2021-10-13</time>
+              <time title="创建时间：2021-10-13 09:37:20 / 修改时间：10:00:01" itemprop="dateCreated datePublished" datetime="2021-10-13T09:37:20+08:00">2021-10-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                  <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
                 </span>
             </span>
 
@@ -252,7 +252,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>658</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -269,15 +269,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>昨天：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().setTime(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - <span class="number">3600</span> * <span class="number">1000</span> * <span class="number">24</span>)).toLocaleDateString().replace(<span class="regexp">/\//g</span>, <span class="string">&quot;-&quot;</span>)&#125;</span>`</span></span><br></pre></td></tr></table></figure>
-<p>今天：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().setTime(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime())).toLocaleDateString().replace(<span class="regexp">/\//g</span>, <span class="string">&quot;-&quot;</span>)&#125;</span>`</span></span><br></pre></td></tr></table></figure>
-<p>明天：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().setTime(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() + <span class="number">3600</span> * <span class="number">1000</span> * <span class="number">24</span>)).toLocaleDateString().replace(<span class="regexp">/\//g</span>, <span class="string">&quot;-&quot;</span>)&#125;</span>`</span></span><br></pre></td></tr></table></figure>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这段时间项目中使用了vue3，项目中需要用到同级组件传值，自然想到使用EventBus，使用了vue2的老方法做发现报错，查阅后得知vue2的EventBus在vue3中不能适用了，所以需要自定义</p>
+<h2 id="写一个简单的订阅-发布的类"><a href="#写一个简单的订阅-发布的类" class="headerlink" title="写一个简单的订阅/发布的类"></a>写一个简单的订阅/发布的类</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">EventBus</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">this</span>.events = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  emit (eventName, data) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.events[eventName]) &#123;</span><br><span class="line">      <span class="built_in">this</span>.events[eventName].forEach(<span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        fn(data);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  on (eventName, fn) &#123;</span><br><span class="line">    <span class="built_in">this</span>.events[eventName] = <span class="built_in">this</span>.events[eventName] || [];</span><br><span class="line">    <span class="built_in">this</span>.events[eventName].push(fn);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  off (eventName, fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.events[eventName]) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.events[eventName].length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.events[eventName][i] === fn) &#123;</span><br><span class="line">          <span class="built_in">this</span>.events[eventName].splice(i, <span class="number">1</span>);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以写一个方法获取任意时间</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;number&#125;</span> </span>0表示今天，-1为昨天，1为明天依此类推</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string&#125;</span> </span>字符串格式时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> getFormatDate = <span class="function">(<span class="params">count</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().setTime(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() + <span class="number">3600</span> * <span class="number">1000</span> * <span class="number">24</span> * count)).toLocaleDateString().replace(<span class="regexp">/\//g</span>, <span class="string">&quot;-&quot;</span>)&#125;</span>`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li>在入口文件中引入EventBus执行挂载</li>
+</ol>
+<p>在main.js中挂载EventBus：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> EventBus <span class="keyword">from</span> <span class="string">&#x27;./bus.js&#x27;</span></span><br><span class="line"><span class="keyword">const</span> $bus = <span class="keyword">new</span> EventBus()</span><br><span class="line">app.config.globalProperties.$bus = $bus</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>发布事件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  <span class="built_in">this</span>.$bus.emit(<span class="string">&#x27;xxx&#x27;</span>, data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>监听事件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  <span class="built_in">this</span>.$bus.on(<span class="string">&#x27;xxx&#x27;</span>, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    ....</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -296,7 +303,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -338,7 +345,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -347,12 +354,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">188k</span>
+    <span title="站点总字数">189k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:51</span>
+    <span title="站点阅读时长">2:52</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
