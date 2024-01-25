@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2021/12/28/2021/20211228/%E8%A3%85%E6%9C%BA-md/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2022/03/25/2022/20220325/%E5%85%B3%E4%BA%8Ecentos%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/28/2021/20211228/%E8%A3%85%E6%9C%BA-md/" class="post-title-link" itemprop="url">装机.md</a>
+            <a href="/2022/03/25/2022/20220325/%E5%85%B3%E4%BA%8Ecentos%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">centos云服务器安装nginx</a>
         </h2>
 
         <div class="post-meta">
@@ -233,14 +233,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-28 09:43:07" itemprop="dateCreated datePublished" datetime="2021-12-28T09:43:07+08:00">2021-12-28</time>
+              <time title="创建时间：2022-03-25 10:52:15" itemprop="dateCreated datePublished" datetime="2022-03-25T10:52:15+08:00">2022-03-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 16:41:27" itemprop="dateModified" datetime="2022-03-25T16:41:27+08:00">2022-03-25</time>
+                <time title="修改时间：2022-10-08 10:46:07" itemprop="dateModified" datetime="2022-10-08T10:46:07+08:00">2022-10-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A1%AC%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+                  <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">服务器</span></a>
                 </span>
             </span>
 
@@ -258,7 +258,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>482</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -275,54 +275,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>周末第一次自己动手组装了台电脑，记录一下</p>
-<h1 id="需要的零件清单"><a href="#需要的零件清单" class="headerlink" title="需要的零件清单"></a>需要的零件清单</h1><ul>
-<li>CPU</li>
-<li>主板</li>
-<li>散热</li>
-<li>显卡</li>
-<li>SSD</li>
-<li>内存条</li>
-<li>电源</li>
-<li>机箱</li>
-<li>显示器</li>
-</ul>
-<h1 id="选择配置"><a href="#选择配置" class="headerlink" title="选择配置"></a>选择配置</h1><ul>
-<li>CPU：技嘉i5-11400f</li>
-<li>主板：技嘉B560 M</li>
-<li>散热：九州风神 玄冰400</li>
-<li>显卡：一直用的GTX970，还能再战两年🐶</li>
-<li>SSD：三星970 EVO Plus</li>
-<li>内存条：金士顿 FURY 16GB DDR4 3200频</li>
-<li>电源：技嘉P550B 550W电源</li>
-<li>机箱：技嘉幽灵C101G</li>
-<li>显示器：三星S24D590PL</li>
-</ul>
-<h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><ol>
-<li>先把CPU装主板上</li>
-<li>安装CPU散热</li>
-<li>安装SSD和内存条</li>
-<li>把主板安装到机箱里</li>
-<li>把电源放到机箱里走好线</li>
-<li>插线，主板供电，CPU供电，开机跳线</li>
-<li>安装显卡，插显卡供电</li>
-<li>插好显示器和外设的线</li>
-</ol>
-<h1 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h1><ol>
-<li>到大白菜装机官网下载装系统工具</li>
-<li>做u盘启动盘</li>
-<li>u盘启动盘插到新主机上启动安装系统</li>
-<li>安装后自动重启即可</li>
-</ol>
-<p>遇到问题：装机后重启无法进入系统</p>
-<p>解决方案：<br>修改BIOS的参数：</p>
-<ol>
-<li>Secure Boot改成Disabled，禁用安全启动</li>
-<li>CSM改成Enable，表示兼容</li>
-<li>Boot Mode/UEFI Mode改成Legacy，表示传统启动方式</li>
-<li>OS Optimized Defaults改为Disabled，表示禁用默认系统优先配置</li>
-</ol>
+          <h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>云服务器以前一直用的Windows的，gui用着也还行，但是这个Windows系统占太大内存了，而且powershell也太难用了，就重装了一个centos的系统，记录一下安装nginx的过程</p>
+<h1 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h1><h2 id="gcc-安装"><a href="#gcc-安装" class="headerlink" title="gcc 安装"></a>gcc 安装</h2><p>安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure>
+<h2 id="PCRE-pcre-devel-安装"><a href="#PCRE-pcre-devel-安装" class="headerlink" title="PCRE pcre-devel 安装"></a>PCRE pcre-devel 安装</h2><p>PCRE(Perl Compatible Regular Expressions) 是一个Perl库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx也需要此库。命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y pcre pcre-devel</span><br></pre></td></tr></table></figure>
 
+<h2 id="zlib-安装"><a href="#zlib-安装" class="headerlink" title="zlib 安装"></a>zlib 安装</h2><p>zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y zlib zlib-devel</span><br></pre></td></tr></table></figure>
+
+<h2 id="OpenSSL-安装"><a href="#OpenSSL-安装" class="headerlink" title="OpenSSL 安装"></a>OpenSSL 安装</h2><p>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。<br>nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 Centos 安装 OpenSSL 库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx下载"><a href="#nginx下载" class="headerlink" title="nginx下载"></a>nginx下载</h2><p>使用wget命令下载（推荐）。确保系统已经安装了wget，如果没有安装，执行 yum install wget 安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c https:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.20.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.20.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>使用默认配置即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;configure</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="查找安装路径的命令"><a href="#查找安装路径的命令" class="headerlink" title="查找安装路径的命令"></a>查找安装路径的命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-停止-重启nginx的命令"><a href="#启动-停止-重启nginx的命令" class="headerlink" title="启动/停止/重启nginx的命令"></a>启动/停止/重启nginx的命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;nginx </span><br><span class="line">.&#x2F;nginx -s stop</span><br><span class="line">.&#x2F;nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<h3 id="开机自启动nginx"><a href="#开机自启动nginx" class="headerlink" title="开机自启动nginx"></a>开机自启动nginx</h3><p>在rc.local增加启动代码就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;rc.local</span><br></pre></td></tr></table></figure>
+<p>增加一行 /usr/local/nginx/sbin/nginx(nginx路径)<br>设置执行权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 rc.local</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -340,7 +322,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -391,12 +373,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">189k</span>
+    <span title="站点总字数">191k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:52</span>
+    <span title="站点阅读时长">2:53</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>

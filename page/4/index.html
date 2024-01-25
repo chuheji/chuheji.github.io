@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2023/08/16/2023/20230816/%E7%BB%84%E4%BB%B6%E7%9A%84%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%AD%E7%8A%B6%E6%80%81%E9%83%BD%E8%A2%AB%E6%B8%85%E9%99%A4/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2023/08/30/2023/20230830/%E5%85%B3%E4%BA%8Evue%E4%B8%ADui%E5%BA%93%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%9A%84%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/16/2023/20230816/%E7%BB%84%E4%BB%B6%E7%9A%84%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%AD%E7%8A%B6%E6%80%81%E9%83%BD%E8%A2%AB%E6%B8%85%E9%99%A4/" class="post-title-link" itemprop="url">antd实现多个Tree点击任一 Tree 组件的叶子节点后，其他所有 Tree 组件的节点选中状态都被清除</a>
+            <a href="/2023/08/30/2023/20230830/%E5%85%B3%E4%BA%8Evue%E4%B8%ADui%E5%BA%93%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%9A%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">关于vue中ui库组件二次封装的总结</a>
         </h2>
 
         <div class="post-meta">
@@ -234,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-08-16 13:13:47 / 修改时间：13:16:48" itemprop="dateCreated datePublished" datetime="2023-08-16T13:13:47+08:00">2023-08-16</time>
+              <time title="创建时间：2023-08-30 16:10:21 / 修改时间：16:36:57" itemprop="dateCreated datePublished" datetime="2023-08-30T16:10:21+08:00">2023-08-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/antd/" itemprop="url" rel="index"><span itemprop="name">antd</span></a>
+                  <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
                 </span>
             </span>
 
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -269,16 +269,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>antd多个Tree实现点击一个 Tree 组件的叶子节点后，其他所有 Tree 组件的节点选中状态都被清除</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li>Tree组件的选中状态可以由selectedKeys属性控制，这是核心</li>
-<li>其他所有 Tree 组件的节点选中状态都被清除，那么如何判断当前选中的是哪个Tree是关键<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2></li>
-<li>创建 <code>currentSelectedKeys</code>：这个状态用于记录当前选中的节点的 <code>key</code> 值。每当点击一个叶子节点时，我们会将当前节点的 <code>key</code> 值记录在这个状态中，以便在每个 Tree 组件的 <code>selectedKeys</code> 属性中正确设置选中状态。这样做可以确保只有一个 Tree 组件的节点处于选中状态。</li>
-<li>创建<code>activeTreeIndex</code>：这个状态用于记录当前活动的 Tree 组件的索引。每当点击一个 Tree 的节点时，我们会根据点击的节点信息确定当前活动的 Tree 组件的索引，以便后续在设置选中状态时只对当前活动的 Tree 组件进行操作，从而避免干扰其他 Tree 组件的状态。</li>
-<li>当触发onSelect事件后，首先根据点击的节点信息找到当前活动的 Tree 组件的索引，并将其记录在 <code>activeTreeIndex</code> 中。然后，我们判断点击的节点是否是叶子节点，如果是叶子节点，则将当前节点的 <code>key</code> 值记录在 <code>currentSelectedKeys</code> 中。</li>
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在项目开发中需要对组件进行二次封装是很常见的需求，今天来总结一下二次封装组件会遇到的问题</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="属性和方法绑定"><a href="#属性和方法绑定" class="headerlink" title="属性和方法绑定"></a>属性和方法绑定</h3><p>组件封装的时候遇到的第一个问题就是绑定属性和方法了，比如封装一个el-input组件，我们肯定希望将二次封装的组件属性方法都绑定到el-input组件上。</p>
+<p>解决方案：</p>
+<ol>
+<li>把组件用到的所有属性和方法一个一个全部定义好，写在封装组件的props里（非常耗时耗力，不易维护）</li>
+<li>通过$attrs实现绑定属性。$attrs 是一个对象，包含了父组件传递给子组件的非 prop 属性。当一个组件接收到一个属性，但并没有在 props 中声明的时候，它会自动将该属性添加到渲染的根元素上。当我们需要将这些属性传递给一个子组件而不是根元素上时就可以使用 $attrs</li>
 </ol>
-<p>这样，在每个 Tree 组件的 <code>selectedKeys</code> 属性中，我们根据 <code>activeTreeIndex</code> 来判断是否应该设置选中状态。只有当前活动的 Tree 组件的节点会显示选中状态，其他 Tree 组件会被清除选中状态，从而实现需求。</p>
-<h2 id="组件代码"><a href="#组件代码" class="headerlink" title="组件代码"></a>组件代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Tree &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> type &#123; TreeProps &#125; <span class="keyword">from</span> <span class="string">&#x27;antd/es/tree&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">&#x27;./index.less&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./antd.less&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Key &#125; <span class="keyword">from</span> <span class="string">&#x27;rc-tree/lib/interface&#x27;</span>;</span><br><span class="line"></span><br><span class="line">interface IProps &#123;</span><br><span class="line">  title?: string;</span><br><span class="line">  children?: React.ReactNode;</span><br><span class="line">  onSelect: <span class="function">(<span class="params">selectedKeys: Key[], info: object, el?: object</span>) =&gt;</span> <span class="keyword">void</span>;</span><br><span class="line">  treeData?: any[];</span><br><span class="line">  treeDataArr?: any[];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> DatasourceTree: React.FC&lt;IProps&gt; = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; children, title, onSelect, treeData, treeDataArr &#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [currentSelectedKeys, setCurrentSelectedKeys] = React.useState&lt;React.Key[]&gt;([]);</span><br><span class="line">  <span class="keyword">const</span> [activeTreeIndex, setActiveTreeIndex] = React.useState&lt;number | <span class="literal">null</span>&gt;(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleSelect: TreeProps[<span class="string">&#x27;onSelect&#x27;</span>] = <span class="function">(<span class="params">selectedKeys: React.Key[], info: any</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> selectedNode = info.node;</span><br><span class="line">    <span class="keyword">if</span> (!selectedNode.children || selectedNode.children.length) &#123;</span><br><span class="line">      onSelect(selectedKeys, info);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleSelect2: any = <span class="function">(<span class="params">selectedKeys: React.Key[], info: any, el: any</span>) =&gt;</span> &#123;</span><br><span class="line">    setActiveTreeIndex((treeDataArr <span class="keyword">as</span> any[]).findIndex(<span class="function">(<span class="params">item: any</span>) =&gt;</span> item === el));</span><br><span class="line">    <span class="keyword">const</span> selectedNode = info.node;</span><br><span class="line">    <span class="keyword">if</span> (!selectedNode.children || !selectedNode.children.length) &#123;</span><br><span class="line">      setCurrentSelectedKeys(selectedKeys);</span><br><span class="line">      onSelect(selectedKeys, info, el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> &#123; TreeNode &#125; = Tree</span><br><span class="line">  <span class="keyword">const</span> renderTreeNodes = <span class="function">(<span class="params">data: any</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> data.map(<span class="function">(<span class="params">item: any</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (item.children.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;TreeNode title=&#123;item.name&#125; key=&#123;item.id&#125; selectable=&#123;<span class="literal">false</span>&#125;&gt;</span><br><span class="line">            &#123;renderTreeNodes(item.children)&#125;</span><br><span class="line">          &lt;/TreeNode&gt;</span><br><span class="line">        );</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">TreeNode</span> <span class="attr">title</span>=<span class="string">&#123;item.name&#125;</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span> /&gt;</span></span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=&#123;styles.treeLayoutContainer&#125;&gt;</span><br><span class="line">      &lt;div className=&#123;styles.treeContainer&#125;&gt;</span><br><span class="line">        &#123;treeData &amp;&amp; treeData.length &amp;&amp; !treeDataArr ? (</span><br><span class="line">          &lt;&gt;</span><br><span class="line">            &lt;div className=&#123;styles.treeTitle&#125;&gt;&#123;title&#125;&lt;/div&gt;</span><br><span class="line">            &lt;Tree</span><br><span class="line">              defaultExpandAll</span><br><span class="line">              onSelect=&#123;handleSelect&#125;</span><br><span class="line">            &gt;</span><br><span class="line">              &#123;renderTreeNodes(treeData)&#125;</span><br><span class="line">            &lt;/Tree&gt;</span><br><span class="line">          &lt;/&gt;</span><br><span class="line">        ) : <span class="literal">null</span>&#125;</span><br><span class="line">        &#123;!treeData &amp;&amp; treeDataArr &amp;&amp; treeDataArr.length &amp;&amp;</span><br><span class="line">          treeDataArr.map(<span class="function">(<span class="params">el: any, index: number</span>) =&gt;</span> (</span><br><span class="line">            &lt;div key=&#123;index&#125;&gt;</span><br><span class="line">              &lt;div className=&#123;styles.treeTitle&#125;&gt;&#123;el.title&#125;&lt;/div&gt;</span><br><span class="line">              &lt;Tree</span><br><span class="line">                defaultExpandAll</span><br><span class="line">                onSelect=&#123;<span class="function">(<span class="params">selectedKeys: Key[], info: any</span>) =&gt;</span> handleSelect2(selectedKeys, info, el)&#125;</span><br><span class="line">                selectedKeys=&#123;index === activeTreeIndex ? currentSelectedKeys : []&#125;</span><br><span class="line">              &gt;</span><br><span class="line">                &#123;renderTreeNodes(el.treeData)&#125;</span><br><span class="line">              &lt;/Tree&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">          ))</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div style=&#123;&#123; <span class="attr">width</span>: <span class="string">&#x27;100%&#x27;</span>, <span class="attr">marginLeft</span>: <span class="string">&#x27;16px&#x27;</span> &#125;&#125;&gt;&#123;children&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">DatasourceTree.defaultProps = &#123;</span><br><span class="line">  title: <span class="string">&#x27;数据源管理&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> DatasourceTree;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;child-component&quot; v-bind&#x3D;&quot;$attrs&quot;&gt;</span><br><span class="line">    &lt;!-- 子组件的内容 --&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false, &#x2F;&#x2F; 防止未知属性绑定到根元素上</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过$listeners实现绑定方法。用法和$attrs一致</li>
+</ol>
+<h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>ui组件中很多地方都会有插槽。这个也可以和属性一样把所有插槽都写出来，如果插槽少的话倒还好。但是如果插槽过多就很难维护了，下面给出一个通用的解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-input ref&#x3D;&quot;refInput&quot; v-bind&#x3D;&quot;$attrs&quot;&gt;</span><br><span class="line">    &lt;template v-for&#x3D;&quot;(_value, name) in $slots&quot; #[name]&#x3D;&quot;slotData&quot;&gt;</span><br><span class="line">      &lt;slot :name&#x3D;&quot;name&quot; v-bind&#x3D;&quot;slotData || &#123;&#125;&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;&#x2F;el-input&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h3><p>ref这个问题就很恶心了，如果在react中使用forwardRef很简单就能实现。但是在vue中组件获取不到其他组件传出来的ref（其他组件也不能传ref）。<br>这个问题目前没有太好的解决方案，本文给出一个较简单的实现方式：</p>
+<p>拿到组件ref后，将组件所有成员全放在当前组件实例里面，这样在调用ref的时候就可以拿到相同的成员了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-input ref&#x3D;&quot;refInput&quot; v-bind&#x3D;&quot;$attrs&quot;&gt;</span><br><span class="line">    &lt;template v-for&#x3D;&quot;(_value, name) in $slots&quot; #[name]&#x3D;&quot;slotData&quot;&gt;</span><br><span class="line">      &lt;slot :name&#x3D;&quot;name&quot; v-bind&#x3D;&quot;slotData || &#123;&#125;&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;&#x2F;el-input&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    const inp &#x3D; this.$refs.refInput</span><br><span class="line">    for (const key in inp) &#123;</span><br><span class="line">      this[key] &#x3D; inp[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -297,7 +304,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -348,12 +355,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">189k</span>
+    <span title="站点总字数">191k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:52</span>
+    <span title="站点阅读时长">2:53</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
