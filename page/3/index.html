@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2024/01/25/2024/20240125/flex%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://chuheji.github.io/2024/07/09/2024/20240709/%E5%85%B3%E4%BA%8E%E8%AE%BE%E5%A4%87%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/01/25/2024/20240125/flex%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8/" class="post-title-link" itemprop="url">flex属性的作用</a>
+            <a href="/2024/07/09/2024/20240709/%E5%85%B3%E4%BA%8E%E8%AE%BE%E5%A4%87%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">关于设备兼容性问题的记录</a>
         </h2>
 
         <div class="post-meta">
@@ -232,17 +232,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-25 15:12:10 / 修改时间：16:14:39" itemprop="dateCreated datePublished" datetime="2024-01-25T15:12:10+08:00">2024-01-25</time>
+              <time title="创建时间：2024-07-09 10:58:19" itemprop="dateCreated datePublished" datetime="2024-07-09T10:58:19+08:00">2024-07-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-07-26 10:54:53" itemprop="dateModified" datetime="2024-07-26T10:54:53+08:00">2024-07-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                  <a href="/categories/%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">兼容性问题</span></a>
                 </span>
             </span>
 
@@ -252,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>222</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -269,32 +275,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>flex布局首次提出是2009年，2016年5月官方正式公布用于web端的最新稳定版本。平时使用flex布局也就是常用justify-content,align-items这两个属性。<br>而flex属性却是很少用，主要是不太理解用法，这次就详细了解一下flex属性吧</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>flex属性是flex布局的三个属性的缩写：flex-grow flex-shrink flex-basis。关于这三个属性我的理解是：</p>
-<ul>
-<li>flex-grow在父盒子还有多余空间时生效，规定多余空间子盒子各自所占有的份额。值越大占的份额越高</li>
-<li>flex-shrink在父盒子空间不够使用溢出的情况下，各个子盒子需要缩放的份额。值越大需要缩放的越多，即占有份额越少</li>
-<li>flex-basis即子盒子占有的固定份额</li>
-</ul>
-<p>当flex只有一个非负数字值时，如：flex: 1，那1就代表flex-grow的值<br>当flex有两个非负数字值时，如：flex: 1 2，那就代表的是flex-grow: 1,flex-shrink: 2<br>当flex有一个表示长度的值时，如：flex: 200px,flex: 20%，那就代表的是flex-basis: 200px,flex-basis:20%</p>
-<h2 id="计算方式"><a href="#计算方式" class="headerlink" title="计算方式"></a>计算方式</h2><h3 id="优先级说明"><a href="#优先级说明" class="headerlink" title="优先级说明"></a>优先级说明</h3><p>计算尺寸的优先级为：最大最小尺寸限制 &gt; 弹性增长或收缩 &gt; 基础尺寸</p>
-<p>所以max-width/max-height优先级最高，然后才是弹性盒子计算的尺寸，基础尺寸优先级最低</p>
-<h3 id="尺寸计算方式"><a href="#尺寸计算方式" class="headerlink" title="尺寸计算方式"></a>尺寸计算方式</h3><ol>
-<li>flex-grow</li>
-</ol>
-<p>计算简单，根据比例分配即可</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">  <span class="attribute">flex</span>:<span class="number">1</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">  <span class="attribute">flex</span>:<span class="number">2</span> <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">background</span>: burlywood;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">  <span class="attribute">flex</span>:<span class="number">2</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: blueviolet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">父盒子总宽度1000 - left子盒子基础宽度200 - right子盒子基础宽度200 &#x3D; 600</span><br><span class="line"></span><br><span class="line">600 &#x2F; （left份额1 + center份额2 + right份额2） &#x3D; 120</span><br><span class="line"></span><br><span class="line">left宽度：120 * 1 + 200 &#x3D; 320</span><br><span class="line">center宽度：120 * 2 &#x3D; 240</span><br><span class="line">left宽度：120 * 2 + 200 &#x3D; 440</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>flex-shrink</li>
-</ol>
-<p>这个计算麻烦一点，需要算出收缩的权重和</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">background</span>:pink;</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">1</span> <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">2</span> <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: burlywood;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">3</span> <span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">background</span>: blueviolet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">第一步：权重和计算。每个子盒的flex-shrink * flex-basis相加 1 * 200 + 2 * 300 + 3 * 800 &#x3D; 3200</span><br><span class="line">第二步：超出宽度计算。 所有子盒子基本宽度-父盒子宽度 200 + 300 + 800 - 1000 &#x3D; 300</span><br><span class="line">第三部：计算需要收缩的宽度（flex-shrink * flex-basis &#x2F; 权重和 * 超出宽度）</span><br><span class="line"></span><br><span class="line">left宽度：基础宽度 - 收缩宽度 &#x3D; 200 - (1 * 200 &#x2F; 3200 * 300) &#x3D; 181.25</span><br><span class="line">center宽度：基础宽度 - 收缩宽度 &#x3D; 300 - (2 * 300 &#x2F; 3200 * 300) &#x3D; 243.75</span><br><span class="line">right宽度：基础宽度 - 收缩宽度 &#x3D; 800 - (3 * 800 &#x2F; 3200 * 300) &#x3D; 575</span><br></pre></td></tr></table></figure>
-
-<p>看起来麻烦，但是我们一般使用的情况都是需要等比收缩等比放大的</p>
+          <h2 id="浙政钉pc端"><a href="#浙政钉pc端" class="headerlink" title="浙政钉pc端"></a>浙政钉pc端</h2><p>不能识别row-gap和column-gap属性，需要用margin-top和margin-left来代替</p>
+<h2 id="浏览器safari"><a href="#浏览器safari" class="headerlink" title="浏览器safari"></a>浏览器safari</h2><p>使用new Date().getTime()方法时不能识别‘2024/09/08 12:00:00’这样的字符串，只能识别‘2024-09-08 12:00:00’，但是google可以识别<br>解决方法：new Date(‘2024/09/08 12:00:00’.replace(/-/g, ‘/‘)).getTime()</p>
 
       
     </div>
@@ -313,7 +295,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -364,12 +346,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">193k</span>
+    <span title="站点总字数">194k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:55</span>
+    <span title="站点阅读时长">2:57</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
